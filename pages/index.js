@@ -10,7 +10,7 @@ export default function Home() {
 				<link rel="icon" href="/logo.svg" />
 			</Head>
 
-			<header className="bg-base-100 shadow">
+			<header className="bg-base-100 shadow-sm">
 				<div className="container mx-auto py-6 px-4">
 					<nav className="flex items-center justify-between">
 						<div className="flex items-center">
@@ -21,7 +21,7 @@ export default function Home() {
 						</div>
 						<div>
 							<Link href="/enroll">
-								<button className="btn btn-primary text-white font-semibold py-2 px-4 rounded">
+								<button className="btn btn-primary text-white font-semibold">
 									Enroll Now
 								</button>
 							</Link>
@@ -31,7 +31,7 @@ export default function Home() {
 			</header>
 
 			<main>
-				<section className="bg-gradient-to-r from-primary to-secondary text-white py-20">
+				<section className="bg-gradient-to-r from-primary to-secondary rounded-lg text-white py-20 shadow-3xl">
 					<div className="container mx-auto px-4">
 						<h1 className="text-4xl font-bold mb-4">
 							Master Full Stack Web Development with JavaScript
@@ -50,7 +50,7 @@ export default function Home() {
 							</ul>
 						</div>
 						<Link href="/enroll">
-							<button className="btn btn-outline btn-accent text-white font-semibold py-3 px-8 rounded-full shadow-lg">
+							<button className="btn btn-outline text-white font-semibold py-3 px-8 rounded-full shadow-lg">
 								Enroll Now
 							</button>
 						</Link>
@@ -60,7 +60,7 @@ export default function Home() {
 				<section className="container mx-auto py-16 px-4">
 					<h2 className="text-3xl font-semibold mb-8">What You'll Learn</h2>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-						<div className="card bg-base-100 shadow-xl">
+						<div className="card glass shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/react.svg"
@@ -71,7 +71,7 @@ export default function Home() {
 								<p>Build dynamic and interactive user interfaces with React.</p>
 							</div>
 						</div>
-						<div className="card bg-base-100 shadow-xl">
+						<div className="card glass shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/nodejs.svg"
@@ -82,7 +82,7 @@ export default function Home() {
 								<p>Develop server-side applications using Node.js.</p>
 							</div>
 						</div>
-						<div className="card bg-base-100 shadow-xl">
+						<div className="card glass shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/nextjs.svg"
@@ -93,7 +93,7 @@ export default function Home() {
 								<p>Build server-rendered React applications with Next.js.</p>
 							</div>
 						</div>
-						<div className="card bg-base-100 shadow-xl">
+						<div className="card glass shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/firebase.svg"
@@ -107,7 +107,7 @@ export default function Home() {
 								</p>
 							</div>
 						</div>
-						<div className="card bg-base-100 shadow-xl">
+						<div className="card glass shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/graphql.svg"
@@ -118,7 +118,7 @@ export default function Home() {
 								<p>Learn to build efficient and flexible APIs using GraphQL.</p>
 							</div>
 						</div>
-						<div className="card bg-base-100 shadow-xl">
+						<div className="card glass shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/mongodb.svg"
@@ -129,7 +129,7 @@ export default function Home() {
 								<p>Store and retrieve data using MongoDB.</p>
 							</div>
 						</div>
-						<div className="card bg-base-100 shadow-xl">
+						<div className="card glass shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/redis.svg"
@@ -140,7 +140,7 @@ export default function Home() {
 								<p>Optimize application performance with Redis caching.</p>
 							</div>
 						</div>
-						<div className="card bg-base-100 shadow-xl">
+						<div className="card glass shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/tailwindcss.svg"
@@ -151,14 +151,14 @@ export default function Home() {
 								<p>Style your applications rapidly with Tailwind CSS.</p>
 							</div>
 						</div>
-						<div className="card bg-base-100 shadow-xl">
+						<div className="card glass shadow-xl">
 							<div className="card-body items-center text-center">
 								<img src="/aws.svg" alt="AWS" className="h-12 w-auto mb-4" />
 								<h3 className="card-title">AWS</h3>
 								<p>Deploy and scale your applications using AWS services.</p>
 							</div>
 						</div>
-						<div className="card bg-base-100 shadow-xl">
+						<div className="card glass shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/netlify.svg"
@@ -188,7 +188,6 @@ export default function Home() {
 							<li className="mb-4">
 								Live online classes with expert instructors
 							</li>
-							<li>Lifetime access to course materials and recordings</li>
 						</ul>
 					</div>
 				</section>

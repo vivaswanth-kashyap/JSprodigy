@@ -10,13 +10,14 @@ export default function Enroll() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<header className="bg-base-100 shadow">
+			<header className="bg-primary text-primary-content">
 				<div className="container mx-auto py-6 px-4">
-					<nav>
+					<nav className="flex items-center justify-between">
 						<Link href="/">
-							<button className="btn btn-ghost text-xl font-semibold">
-								JS Full Stack Course
-							</button>
+							<div className="flex items-center space-x-2 text-white">
+								<span className="text-3xl font-light">&lt;</span>
+								<span className="text-xl font-semibold">jsProdigy</span>
+							</div>
 						</Link>
 					</nav>
 				</div>
@@ -77,7 +78,7 @@ export default function Enroll() {
 							required
 						/>
 					</div>
-					<button type="submit" className="btn btn-primary w-full">
+					<button type="submit" className="btn btn-secondary w-full">
 						Submit
 					</button>
 				</form>
