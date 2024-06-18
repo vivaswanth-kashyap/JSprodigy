@@ -154,6 +154,31 @@ export default function Home() {
 								</p>
 							</div>
 						</div>
+						<div className="card glass shadow-xl">
+							<div className="card-body items-center text-center">
+								<img
+									src="/docker.svg"
+									alt="Docker"
+									className="h-12 w-auto mb-4"
+								/>
+								<h3 className="card-title">Docker</h3>
+								<p>Package and deploy applications using Docker containers.</p>
+							</div>
+						</div>
+						<div className="card glass shadow-xl">
+							<div className="card-body items-center text-center">
+								<img
+									src="/kubernetes.svg"
+									alt="Kubernetes"
+									className="h-12 w-auto mb-4"
+								/>
+								<h3 className="card-title">Kubernetes</h3>
+								<p>
+									Manage and orchestrate containerized applications with
+									Kubernetes.
+								</p>
+							</div>
+						</div>
 					</div>
 				</section>
 

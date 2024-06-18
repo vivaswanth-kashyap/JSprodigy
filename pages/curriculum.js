@@ -16,7 +16,7 @@ export default function Curriculum() {
 					Course Curriculum
 				</h1>
 				<div className="grid grid-row-1 gap-3">
-					<div className="collapse rounded-box">
+					<div className="collapse rounded-box border">
 						<input type="checkbox" />
 						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
 							Back-end Fundamentals
@@ -29,7 +29,7 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box">
+					<div className="collapse rounded-box border">
 						<input type="checkbox" />
 						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
 							Databases
@@ -43,7 +43,7 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box">
+					<div className="collapse rounded-box border">
 						<input type="checkbox" />
 						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
 							Web Development Fundamentals
@@ -55,7 +55,7 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box">
+					<div className="collapse rounded-box border">
 						<input type="checkbox" />
 						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
 							Front-end Basics
@@ -68,7 +68,7 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box">
+					<div className="collapse rounded-box border">
 						<input type="checkbox" />
 						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
 							Advanced Front-end
@@ -81,7 +81,7 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box">
+					<div className="collapse rounded-box border">
 						<input type="checkbox" />
 						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
 							Advanced Back-end
@@ -94,7 +94,7 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box">
+					<div className="collapse rounded-box border">
 						<input type="checkbox" />
 						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
 							React and Modern Front-end
@@ -113,7 +113,7 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box">
+					<div className="collapse rounded-box border">
 						<input type="checkbox" />
 						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
 							Advanced Frameworks and Technologies
@@ -127,7 +127,19 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box">
+					<div className="collapse rounded-box border">
+						<input type="checkbox" />
+						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
+							Containerization and Orchestration
+						</div>
+						<div className="collapse-content bg-base-200 rounded-b-box">
+							<ul className="list-disc pl-8 text-lg">
+								<li>Docker</li>
+								<li>Kubernetes</li>
+							</ul>
+						</div>
+					</div>
+					<div className="collapse rounded-box border">
 						<input type="checkbox" />
 						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
 							Deployment and Hosting
