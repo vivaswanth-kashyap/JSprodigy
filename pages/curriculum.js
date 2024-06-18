@@ -12,13 +12,13 @@ export default function Curriculum() {
 			</Head>
 			<Navbar />
 			<main className="container mx-auto py-12 px-4">
-				<h1 className="text-4xl font-bold mb-8 text-center">
+				<h1 className="text-5xl font-bold mb-8 text-center">
 					Course Curriculum
 				</h1>
-				<div className="grid grid-row-1 gap-3">
-					<div className="collapse rounded-box border">
+				<div className="grid grid-cols-1 gap-6">
+					<div className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
 						<input type="checkbox" />
-						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
+						<div className="collapse-title text-xl font-medium bg-primary text-primary-content rounded-t-box">
 							Back-end Fundamentals
 						</div>
 						<div className="collapse-content bg-base-200 rounded-b-box">
@@ -29,9 +29,9 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box border">
+					<div className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
 						<input type="checkbox" />
-						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
+						<div className="collapse-title text-xl font-medium bg-primary text-primary-content rounded-t-box">
 							Databases
 						</div>
 						<div className="collapse-content bg-base-200 rounded-b-box">
@@ -43,9 +43,9 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box border">
+					<div className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
 						<input type="checkbox" />
-						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
+						<div className="collapse-title text-xl font-medium bg-primary text-primary-content rounded-t-box">
 							Web Development Fundamentals
 						</div>
 						<div className="collapse-content bg-base-200 rounded-b-box">
@@ -55,9 +55,9 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box border">
+					<div className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
 						<input type="checkbox" />
-						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
+						<div className="collapse-title text-xl font-medium bg-primary text-primary-content rounded-t-box">
 							Front-end Basics
 						</div>
 						<div className="collapse-content bg-base-200 rounded-b-box">
@@ -68,9 +68,9 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box border">
+					<div className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
 						<input type="checkbox" />
-						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
+						<div className="collapse-title text-xl font-medium bg-primary text-primary-content rounded-t-box">
 							Advanced Front-end
 						</div>
 						<div className="collapse-content bg-base-200 rounded-b-box">
@@ -81,9 +81,9 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box border">
+					<div className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
 						<input type="checkbox" />
-						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
+						<div className="collapse-title text-xl font-medium bg-primary text-primary-content rounded-t-box">
 							Advanced Back-end
 						</div>
 						<div className="collapse-content bg-base-200 rounded-b-box">
@@ -94,9 +94,9 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box border">
+					<div className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
 						<input type="checkbox" />
-						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
+						<div className="collapse-title text-xl font-medium bg-primary text-primary-content rounded-t-box">
 							React and Modern Front-end
 						</div>
 						<div className="collapse-content bg-base-200 rounded-b-box">
@@ -113,9 +113,9 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box border">
+					<div className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
 						<input type="checkbox" />
-						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
+						<div className="collapse-title text-xl font-medium bg-primary text-primary-content rounded-t-box">
 							Advanced Frameworks and Technologies
 						</div>
 						<div className="collapse-content bg-base-200 rounded-b-box">
@@ -127,9 +127,9 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box border">
+					<div className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
 						<input type="checkbox" />
-						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
+						<div className="collapse-title text-xl font-medium bg-primary text-primary-content rounded-t-box">
 							Containerization and Orchestration
 						</div>
 						<div className="collapse-content bg-base-200 rounded-b-box">
@@ -139,9 +139,9 @@ export default function Curriculum() {
 							</ul>
 						</div>
 					</div>
-					<div className="collapse rounded-box border">
+					<div className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
 						<input type="checkbox" />
-						<div className="collapse-title text-xl font-semibold bg-primary text-primary-content rounded-t-box">
+						<div className="collapse-title text-xl font-medium bg-outline text-primary-content rounded-t-box">
 							Deployment and Hosting
 						</div>
 						<div className="collapse-content bg-base-200 rounded-b-box">
