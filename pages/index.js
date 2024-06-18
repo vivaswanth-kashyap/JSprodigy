@@ -1,6 +1,6 @@
-// pages/index.js
 import Head from "next/head";
 import Link from "next/link";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
 	return (
@@ -10,28 +10,10 @@ export default function Home() {
 				<link rel="icon" href="/logo.svg" />
 			</Head>
 
-			<header className="bg-base-100 shadow-sm">
-				<div className="container mx-auto py-6 px-4">
-					<nav className="flex items-center justify-between">
-						<div className="flex items-center">
-							<img src="/logo.svg" alt="Logo" className="h-8 w-auto mr-2" />
-							<span className="font-semibold text-xl text-primary">
-								jsProdigy
-							</span>
-						</div>
-						<div>
-							<Link href="/enroll">
-								<button className="btn btn-primary text-white font-semibold">
-									Enroll Now
-								</button>
-							</Link>
-						</div>
-					</nav>
-				</div>
-			</header>
+			<Navbar />
 
 			<main>
-				<section className="bg-gradient-to-r from-primary to-secondary rounded-lg text-white py-20 shadow-3xl">
+				<section className="bg-gradient-to-r from-primary to-secondary rounded-lg text-white py-20 shadow-3xl mx-auto">
 					<div className="container mx-auto px-4">
 						<h1 className="text-4xl font-bold mb-4">
 							Master Full Stack Web Development with JavaScript
@@ -177,18 +159,21 @@ export default function Home() {
 
 				<section className="bg-base-200 py-16">
 					<div className="container mx-auto px-4">
-						<h2 className="text-3xl font-semibold mb-8">Course Highlights</h2>
-						<ul className="list-disc pl-8 text-xl">
-							<li className="mb-4">
-								Comprehensive curriculum covering a wide range of technologies
-							</li>
-							<li className="mb-4">
-								Hands-on projects and practical coding exercises
-							</li>
-							<li className="mb-4">
-								Live online classes with expert instructors
-							</li>
-						</ul>
+						<h2 className="text-4xl font-bold mb-8 text-center">
+							Course Curriculum
+						</h2>
+						<div className="text-center mb-8">
+							<p>
+								Our comprehensive curriculum covers a wide range of topics to
+								equip you with the skills and knowledge needed to excel in the
+								field of web development.
+							</p>
+						</div>
+						<div className="text-center">
+							<Link href="/curriculum">
+								<button className="btn btn-outline">View Curriculum</button>
+							</Link>
+						</div>
 					</div>
 				</section>
 			</main>

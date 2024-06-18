@@ -1,6 +1,6 @@
-// pages/enroll.js
 import Head from "next/head";
 import Link from "next/link";
+import Navbar from "../components/Navbar";
 
 export default function Enroll() {
 	return (
@@ -10,18 +10,7 @@ export default function Enroll() {
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
-			<header className="bg-primary text-primary-content">
-				<div className="container mx-auto py-6 px-4">
-					<nav className="flex items-center justify-between">
-						<Link href="/">
-							<div className="flex items-center space-x-2 text-white">
-								<span className="text-3xl font-light">&lt;</span>
-								<span className="text-xl font-semibold">jsProdigy</span>
-							</div>
-						</Link>
-					</nav>
-				</div>
-			</header>
+			<Navbar />
 
 			<main className="container mx-auto py-12 px-4 flex-grow">
 				<h1 className="text-4xl font-semibold mb-8">Enroll Now</h1>
