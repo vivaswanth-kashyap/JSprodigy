@@ -52,7 +52,7 @@ const SignUpPage = () => {
 		}
 		try {
 			const response = await axios.post(
-				`http://13.60.18.244:4000/users/${uid}`,
+				`https://13.60.18.244:4000/users/${uid}`,
 				null,
 				{
 					headers: {
