@@ -141,7 +141,7 @@ export default function Curriculum() {
 					</div>
 					<div className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
 						<input type="checkbox" />
-						<div className="collapse-title text-xl font-medium bg-outline text-primary-content rounded-t-box">
+						<div className="collapse-title text-xl font-medium bg-primary text-primary-content rounded-t-box">
 							Deployment and Hosting
 						</div>
 						<div className="collapse-content bg-base-200 rounded-b-box">

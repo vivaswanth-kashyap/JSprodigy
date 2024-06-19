@@ -1,6 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
+import { getAuth } from "firebase/auth";
+import { AuthProvider } from "../contexts/AuthContext";
 
 export default function Home() {
 	return (
