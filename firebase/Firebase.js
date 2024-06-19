@@ -1,10 +1,14 @@
-const firebaseConfig = {
-	apiKey: "AIzaSyAZrqo7Kw7oGE-fboi8pandudywZCIv-lo",
-	authDomain: "jsprodigy-fdb31.firebaseapp.com",
-	projectId: "jsprodigy-fdb31",
-	storageBucket: "jsprodigy-fdb31.appspot.com",
-	messagingSenderId: "604750583953",
-	appId: "1:604750583953:web:bf3ff44479309e37410730",
+import { initializeApp } from "firebase/app";
+
+const fbconfig = {
+	apiKey: process.env.NEXT_PUBLIC_fbApiKey,
+	authDomain: process.env.NEXT_PUBLIC_fbAuthDomain,
+	projectId: process.env.NEXT_PUBLIC_fbProjectId,
+	storageBucket: process.env.NEXT_PUBLIC_fbStorageBucket,
+	messagingSenderId: process.env.NEXT_PUBLIC_fbMessagingSenderId,
+	appId: process.env.NEXT_PUBLIC_fbAppId,
 };
 
-export default firebaseConfig;
+const app = initializeApp(fbconfig);
+
+export default app;

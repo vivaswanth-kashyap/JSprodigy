@@ -1,18 +1,20 @@
 // components/Navbar.js
 import Link from "next/link";
 import Image from "next/image";
-import { useContext,useEffect } from "react";
-import { AuthContext } from "../contexts/AuthContext";
-import { ThemeContext } from "../contexts/themeContext";
 import { doSignOut } from "../firebase/FirebaseFunctions";
 
+import { useContext, useEffect } from "react";
+import { ThemeContext } from "../contexts/themeContext";
+import { useAuth } from "../contexts/AuthContext";
+
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   useEffect(() => {
-		document.documentElement.setAttribute("data-theme", theme);
-	}, [theme]);
+    const body = document.querySelector("body");
+    body.setAttribute("data-theme", theme);
+  }, [theme]);
   const handleSignOut = async () => {
     try {
       await doSignOut();
