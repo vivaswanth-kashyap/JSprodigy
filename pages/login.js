@@ -54,7 +54,7 @@ const LoginPage = () => {
 		}
 		try {
 			const response = await axios.post(
-				`https://13.60.18.244:4000/users/${uid}`,
+				`https://api.jsprodigy.com/users/${uid}`,
 				null,
 				{
 					headers: {
