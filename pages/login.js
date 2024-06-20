@@ -38,6 +38,8 @@ const LoginPage = () => {
 			const auth = getAuth();
 			const currentUser = auth.currentUser;
 			const uid = currentUser ? currentUser.uid : null;
+			console.log("uid", uid);
+			console.log(token);
 			await callBackendAPI(token, uid);
 			router.push("/");
 		} catch (error) {
@@ -52,7 +54,7 @@ const LoginPage = () => {
 		}
 		try {
 			const response = await axios.post(
-				`https://13.60.18.244:4000/users/${uid}`,
+				`http://13.60.18.244:4000/users/${uid}`,
 				null,
 				{
 					headers: {
