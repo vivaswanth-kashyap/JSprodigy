@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { doSignOut } from "../firebase/FirebaseFunctions";
-
 import { useContext, useEffect } from "react";
 import { ThemeContext } from "../contexts/themeContext";
 import { useAuth } from "../contexts/AuthContext";
@@ -15,6 +14,7 @@ const Navbar = () => {
     const body = document.querySelector("body");
     body.setAttribute("data-theme", theme);
   }, [theme]);
+
   const handleSignOut = async () => {
     try {
       await doSignOut();
@@ -43,7 +43,12 @@ const Navbar = () => {
               </label>
               <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                 <li>
-                  <a onClick={handleSignOut}>Sign Out</a>
+                  <Link href={`/profile/${user.uid}`}>
+                    <button>Profile</button>
+                  </Link>
+                </li>
+                <li>
+                  <button onClick={handleSignOut}>Sign Out</button>
                 </li>
               </ul>
             </div>
@@ -58,6 +63,7 @@ const Navbar = () => {
             </>
           )}
           <div className="swap swap-rotate" onClick={toggleTheme}>
+            {/* ... */}
             <input
               type="checkbox"
               id="theme-toggle"
