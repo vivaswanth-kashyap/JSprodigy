@@ -15,7 +15,7 @@ const Profile = ({ profileData }) => {
 	return (
 		<div className="min-h-screen bg-base-200">
 			<Navbar />
-			<div className="max-w-4xl mx-auto py-8">
+			<div className="max-w-4xl mx-auto py-8 mt-16">
 				<div className="card bg-base-100 shadow-xl">
 					<div className="card-body">
 						<h1 className="card-title text-4xl font-bold mb-4">User Profile</h1>
