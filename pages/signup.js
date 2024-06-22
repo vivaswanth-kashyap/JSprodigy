@@ -25,7 +25,7 @@ const SignUpPage = () => {
 			const currentUser = auth.currentUser;
 			const uid = currentUser ? currentUser.uid : null;
 			await callBackendAPI(token, uid);
-			router.push("/");
+			router.push("/userDetails");
 		} catch (error) {
 			setError(error.message);
 		}
@@ -39,7 +39,7 @@ const SignUpPage = () => {
 			const currentUser = auth.currentUser;
 			const uid = currentUser ? currentUser.uid : null;
 			await callBackendAPI(token, uid);
-			router.push("/");
+			router.push("/userDetails");
 		} catch (error) {
 			setError(error.message);
 		}

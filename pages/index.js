@@ -33,7 +33,7 @@ export default function Home() {
 								<li>Recordings accessible for 2 years</li>
 							</ul>
 						</div>
-						<Link href="/enroll">
+						<Link href="/course">
 							<button className="btn btn-outline text-white font-semibold py-3 px-8 rounded-full shadow-lg">
 								Enroll Now
 							</button>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import Link from "next/link";
 
 const Course = ({ course }) => {
 	// return (
@@ -51,28 +52,35 @@ const Course = ({ course }) => {
 	// );
 
 	return (
-		<div className="min-h-screen bg-base-200">
+		<div className="min-h-screen bg-gradient-to-br from-base-200 via-base-300 to-base-200">
 			<Navbar />
-			<div className="max-w-4xl mx-auto py-16">
-				<div className="card bg-base-100 shadow-xl">
-					<div className="card-body">
-						<h1 className="card-title text-5xl font-bold mb-4 text-center">
+			<div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+					<div className="lg:pr-10">
+						<h1 className="text-5xl font-extrabold mb-4 text-primary-content">
 							{course.title}
 						</h1>
-						<p className="text-xl mb-8 text-center">{course.description}</p>
-						<div className="relative aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg">
-							<iframe
-								src="https://player.vimeo.com/video/965167835?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-								width="800"
-								height="600"
-								frameBorder="0"
-								allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-								title="Vimeo Test 1"
-							></iframe>
+						<p className="text-xl text-base-content mb-8">
+							{course.description}
+						</p>
+						<div className="mt-8">
+							<Link href={`/curriculum`}>
+								<button className="btn btn-primary btn-lg px-8 py-4 rounded-full text-white hover:scale-105 transition-transform duration-300">
+									Start Learning
+								</button>
+							</Link>
 						</div>
-						<div className="mt-8 text-center">
-							<button className="btn btn-primary btn-lg">Start Learning</button>
-						</div>
+					</div>
+					<div className="relative aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-xl">
+						<iframe
+							src="https://player.vimeo.com/video/965167835?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+							width="100%"
+							height="100%"
+							frameBorder="0"
+							allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+							title="Vimeo Test 1"
+							className="absolute top-0 left-0 w-full h-full"
+						></iframe>
 					</div>
 				</div>
 			</div>
