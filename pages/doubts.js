@@ -60,7 +60,7 @@ export default function Community({ doubts }) {
 							<h2 className="card-title text-2xl">Recent Doubts</h2>
 							<ul className="space-y-4">
 								{doubts.map((doubt, index) => (
-									<li key={index} className="card bg-white shadow-md">
+									<li key={index} className="card shadow-md">
 										<div className="card-body">
 											<p className="text-lg">{doubt.doubt}</p>
 											<div className="card-actions justify-end">
