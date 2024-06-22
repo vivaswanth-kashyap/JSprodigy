@@ -38,7 +38,9 @@ export default function Enroll() {
 								</span>
 							</div>
 							<div className="text-center">
-								<button className="btn btn-primary btn-lg">Enroll Now</button>
+								<Link href="/payments?course=core">
+									<button className="btn btn-primary btn-lg">Enroll Now</button>
+								</Link>
 							</div>
 						</div>
 						<div className="bg-base-100 shadow-xl rounded-lg p-8">
@@ -64,7 +66,9 @@ export default function Enroll() {
 								</span>
 							</div>
 							<div className="text-center">
-								<button className="btn btn-primary btn-lg">Enroll Now</button>
+								<Link href="/payments?course=pro">
+									<button className="btn btn-primary btn-lg">Enroll Now</button>
+								</Link>
 							</div>
 						</div>
 					</div>
