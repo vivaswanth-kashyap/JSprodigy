@@ -1,0 +1,236 @@
+import Head from "next/head";
+import Link from "next/link";
+import { useState } from "react";
+import {
+	FaHome,
+	FaBook,
+	FaCode,
+	FaChartLine,
+	FaQuestionCircle,
+	FaCog,
+} from "react-icons/fa";
+import VerticalNavbar from "../components/verticalNavbar";
+
+export default function Dashboard() {
+	const [activeTab, setActiveTab] = useState("home");
+
+	const navItems = [
+		{ id: "home", icon: FaHome, label: "Home" },
+		{ id: "library", icon: FaBook, label: "Library" },
+		{ id: "practice", icon: FaCode, label: "Practice" },
+		{ id: "progress", icon: FaChartLine, label: "Progress" },
+		{ id: "support", icon: FaQuestionCircle, label: "Support" },
+		{ id: "settings", icon: FaCog, label: "Settings" },
+	];
+
+	const renderContent = () => {
+		switch (activeTab) {
+			case "home":
+				return <HomeContent />;
+			case "library":
+				return <LibraryContent />;
+			case "practice":
+				return <PracticeContent />;
+			case "progress":
+				return <ProgressContent />;
+			case "support":
+				return <SupportContent />;
+			case "settings":
+				return <SettingsContent />;
+			default:
+				return <HomeContent />;
+		}
+	};
+
+	return (
+		<div className="bg-base-100 min-h-screen flex">
+			<Head>
+				<title>Dashboard | Full Stack Web Development</title>
+				<link rel="icon" href="/favicon.ico" />
+			</Head>
+
+			{/* Vertical Navbar */}
+			<VerticalNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
+
+			{/* Main Content */}
+			<main className="flex-grow p-8">{renderContent()}</main>
+		</div>
+	);
+}
+
+function HomeContent() {
+	return (
+		<div>
+			<h2 className="text-3xl font-bold mb-6">Welcome back!</h2>
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				<div className="card bg-primary text-primary-content">
+					<div className="card-body">
+						<h2 className="card-title">Continue Learning</h2>
+						<p>Pick up where you left off in "Advanced React Patterns"</p>
+						<div className="card-actions justify-end">
+							<button className="btn">Start</button>
+						</div>
+					</div>
+				</div>
+				<div className="card bg-secondary text-secondary-content">
+					<div className="card-body">
+						<h2 className="card-title">New This Week</h2>
+						<p>Check out our latest module on GraphQL</p>
+						<div className="card-actions justify-end">
+							<button className="btn">Explore</button>
+						</div>
+					</div>
+				</div>
+				<div className="card bg-accent text-accent-content">
+					<div className="card-body">
+						<h2 className="card-title">Weekly Challenge</h2>
+						<p>Test your skills with our weekly coding challenge</p>
+						<div className="card-actions justify-end">
+							<button className="btn">Start Challenge</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+function LibraryContent() {
+	return (
+		<div>
+			<h2 className="text-3xl font-bold mb-6">Course Library</h2>
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{[
+					"JavaScript Fundamentals",
+					"React Essentials",
+					"Node.js and Express",
+					"MongoDB Mastery",
+					"GraphQL API Development",
+					"AWS for Web Developers",
+				].map((course) => (
+					<div key={course} className="card bg-base-200 shadow-xl">
+						<div className="card-body">
+							<h2 className="card-title">{course}</h2>
+							<p>
+								Learn the ins and outs of {course} in this comprehensive module.
+							</p>
+							<div className="card-actions justify-end">
+								<button className="btn btn-primary">Start Course</button>
+							</div>
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	);
+}
+
+function PracticeContent() {
+	return (
+		<div>
+			<h2 className="text-3xl font-bold mb-6">Practice Arena</h2>
+			<div className="card bg-base-200 shadow-xl">
+				<div className="card-body">
+					<h2 className="card-title">Code Editor</h2>
+					<p>Practice your skills in our interactive code editor.</p>
+					<div className="mockup-code mt-4">
+						<pre data-prefix="$">
+							<code>npm run dev</code>
+						</pre>
+					</div>
+					<div className="card-actions justify-end mt-4">
+						<button className="btn btn-primary">Open Editor</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+function ProgressContent() {
+	return (
+		<div>
+			<h2 className="text-3xl font-bold mb-6">Your Progress</h2>
+			<div className="stats shadow">
+				<div className="stat">
+					<div className="stat-figure text-primary">
+						<FaBook className="w-8 h-8" />
+					</div>
+					<div className="stat-title">Courses Completed</div>
+					<div className="stat-value text-primary">3</div>
+					<div className="stat-desc">Out of 6 total courses</div>
+				</div>
+				<div className="stat">
+					<div className="stat-figure text-secondary">
+						<FaCode className="w-8 h-8" />
+					</div>
+					<div className="stat-title">Coding Challenges</div>
+					<div className="stat-value text-secondary">42</div>
+					<div className="stat-desc">Completed this month</div>
+				</div>
+				<div className="stat">
+					<div className="stat-figure text-accent">
+						<FaChartLine className="w-8 h-8" />
+					</div>
+					<div className="stat-title">Overall Progress</div>
+					<div className="stat-value text-accent">70%</div>
+					<div className="stat-desc">Towards course completion</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+function SupportContent() {
+	return (
+		<div>
+			<h2 className="text-3xl font-bold mb-6">Support</h2>
+			<div className="card bg-base-200 shadow-xl">
+				<div className="card-body">
+					<h2 className="card-title">Need Help?</h2>
+					<p>
+						Our support team is here to assist you. Feel free to reach out with
+						any questions or concerns.
+					</p>
+					<div className="card-actions justify-end mt-4">
+						<button className="btn btn-primary">Contact Support</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
+}
+
+function SettingsContent() {
+	return (
+		<div>
+			<h2 className="text-3xl font-bold mb-6">Account Settings</h2>
+			<div className="card bg-base-200 shadow-xl">
+				<div className="card-body">
+					<h2 className="card-title">Personal Information</h2>
+					<form className="form-control w-full max-w-xs">
+						<label className="label">
+							<span className="label-text">Email</span>
+						</label>
+						<input
+							type="email"
+							placeholder="your-email@example.com"
+							className="input input-bordered w-full max-w-xs"
+						/>
+						<label className="label mt-4">
+							<span className="label-text">Password</span>
+						</label>
+						<input
+							type="password"
+							placeholder="********"
+							className="input input-bordered w-full max-w-xs"
+						/>
+						<div className="card-actions justify-end mt-6">
+							<button className="btn btn-primary">Save Changes</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	);
+}
