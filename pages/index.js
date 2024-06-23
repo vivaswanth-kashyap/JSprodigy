@@ -1,26 +1,33 @@
 import Head from "next/head";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Home() {
-	const auth = getAuth();
-	const currentUser = auth.currentUser;
-	const uid = currentUser ? currentUser.uid : null;
+	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true);
 	const [courseAccess, setCourseAccess] = useState(false);
 
-	console.log(uid);
+	useEffect(() => {
+		const auth = getAuth();
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			setUser(user);
+			setLoading(false);
+		});
+
+		// Cleanup subscription on unmount
+		return () => unsubscribe();
+	}, []);
 
 	useEffect(() => {
 		const fetchUserData = async () => {
-			if (uid) {
+			if (user) {
 				try {
 					const response = await axios.get(
-						`https://api.jsprodigy.com/users/${uid}`
+						`https://api.jsprodigy.com/users/${user.uid}`
 					);
-					console.log(response);
 					setCourseAccess(response.data.courseAccess);
 				} catch (error) {
 					console.error("Error fetching user data:", error);
@@ -29,7 +36,19 @@ export default function Home() {
 		};
 
 		fetchUserData();
-	}, [uid]);
+	}, [user]);
+
+	if (loading) {
+		return (
+			<div className="bg-base-100 min-h-screen">
+				<Navbar />
+				<div className="container flex justify-center my-72 mx-auto">
+					<span className="loading loading-dots loading-lg"></span>
+					<span className="loading loading-dots loading-lg"></span>
+				</div>
+			</div>
+		);
+	}
 
 	return (
 		<div className="bg-base-100 min-h-screen">
@@ -50,7 +69,7 @@ export default function Home() {
 							Learn to build powerful web applications using Node.js, Express,
 							React, Next.js, MongoDB, Redis, and GraphQL.
 						</p>
-						{courseAccess ? (
+						{user && courseAccess ? (
 							<div>
 								<p className="text-2xl font-semibold mb-4">
 									Welcome back! Ready to continue your learning journey?
@@ -82,7 +101,6 @@ export default function Home() {
 					</div>
 				</section>
 
-				{/* Rest of the content remains the same */}
 				<section className="container mx-auto py-16 px-4">
 					<h2 className="text-3xl font-semibold mb-8">What You'll Learn</h2>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -226,7 +244,7 @@ export default function Home() {
 					</div>
 				</section>
 
-				{courseAccess && (
+				{user && courseAccess && (
 					<section className="container mx-auto py-16 px-4">
 						<h2 className="text-3xl font-semibold mb-8">Your Progress</h2>
 						<div className="bg-base-200 p-6 rounded-lg shadow-lg">
@@ -241,7 +259,6 @@ export default function Home() {
 					</section>
 				)}
 
-				{/* ... (rest of the sections) ... */}
 				<section className="bg-base-200 py-16">
 					<div className="container mx-auto px-4">
 						<h2 className="text-4xl font-bold mb-8 text-center">
