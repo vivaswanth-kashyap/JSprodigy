@@ -89,29 +89,30 @@ function HomeContent() {
 			<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
 				<div className="card bg-primary text-primary-content">
 					<div className="card-body">
-						<h2 className="card-title text-lg md:text-xl">Continue Learning</h2>
+						<h2 className="card-title text-lg md:text-xl">Express.js Guide</h2>
 						<p className="text-sm md:text-base">
-							Pick up where you left off in "Advanced React Patterns"
+							Learn how to set up an Express.js project with MongoDB
 						</p>
 						<div className="card-actions justify-end">
-							<button className="btn btn-sm md:btn-md">Start</button>
+							<Link href="/tutorials/express" className="btn btn-sm md:btn-md">
+								View Guide
+							</Link>
 						</div>
 					</div>
 				</div>
-				{/* Repeat similar changes for other cards */}
 				<div className="card bg-secondary text-secondary-content">
 					<div className="card-body">
-						<h2 className="card-title">New This Week</h2>
-						<p>Check out our latest module on GraphQL</p>
+						<h2 className="card-title">Continue Learning</h2>
+						<p>Pick up where you left off in "Advanced React Patterns"</p>
 						<div className="card-actions justify-end">
-							<button className="btn">Explore</button>
+							<button className="btn">Resume</button>
 						</div>
 					</div>
 				</div>
 				<div className="card bg-accent text-accent-content">
 					<div className="card-body">
 						<h2 className="card-title">Weekly Challenge</h2>
-						<p>Test your skills with our weekly coding challenge</p>
+						<p>Build a RESTful API using Express and MongoDB</p>
 						<div className="card-actions justify-end">
 							<button className="btn">Start Challenge</button>
 						</div>
