@@ -2,9 +2,35 @@ import Head from "next/head";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import { getAuth } from "firebase/auth";
-import { AuthProvider } from "../contexts/AuthContext";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Home() {
+	const auth = getAuth();
+	const currentUser = auth.currentUser;
+	const uid = currentUser ? currentUser.uid : null;
+	const [courseAccess, setCourseAccess] = useState(false);
+
+	console.log(uid);
+
+	useEffect(() => {
+		const fetchUserData = async () => {
+			if (uid) {
+				try {
+					const response = await axios.get(
+						`https://api.jsprodigy.com/users/${uid}`
+					);
+					console.log(response);
+					setCourseAccess(response.data.courseAccess);
+				} catch (error) {
+					console.error("Error fetching user data:", error);
+				}
+			}
+		};
+
+		fetchUserData();
+	}, [uid]);
+
 	return (
 		<div className="bg-base-100 min-h-screen">
 			<Head>
@@ -24,23 +50,39 @@ export default function Home() {
 							Learn to build powerful web applications using Node.js, Express,
 							React, Next.js, MongoDB, Redis, and GraphQL.
 						</p>
-						<div className="mb-8">
-							<p className="text-2xl font-semibold mb-4">
-								New Batch Starting from July 1st!
-							</p>
-							<ul className="list-disc pl-8 text-lg">
-								<li className="mb-2">Live online classes</li>
-								<li>Recordings accessible for 2 years</li>
-							</ul>
-						</div>
-						<Link href="/enroll">
-							<button className="btn btn-outline text-white font-semibold py-3 px-8 rounded-full shadow-lg">
-								Enroll Now
-							</button>
-						</Link>
+						{courseAccess ? (
+							<div>
+								<p className="text-2xl font-semibold mb-4">
+									Welcome back! Ready to continue your learning journey?
+								</p>
+								<Link href="/dashboard">
+									<button className="btn btn-outline text-white font-semibold py-3 px-8 rounded-full shadow-lg">
+										Go to Dashboard
+									</button>
+								</Link>
+							</div>
+						) : (
+							<div>
+								<div className="mb-8">
+									<p className="text-2xl font-semibold mb-4">
+										New Batch Starting from July 1st!
+									</p>
+									<ul className="list-disc pl-8 text-lg">
+										<li className="mb-2">Live online classes</li>
+										<li>Recordings accessible for 2 years</li>
+									</ul>
+								</div>
+								<Link href="/enroll">
+									<button className="btn btn-outline text-white font-semibold py-3 px-8 rounded-full shadow-lg">
+										Enroll Now
+									</button>
+								</Link>
+							</div>
+						)}
 					</div>
 				</section>
 
+				{/* Rest of the content remains the same */}
 				<section className="container mx-auto py-16 px-4">
 					<h2 className="text-3xl font-semibold mb-8">What You'll Learn</h2>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -184,6 +226,22 @@ export default function Home() {
 					</div>
 				</section>
 
+				{courseAccess && (
+					<section className="container mx-auto py-16 px-4">
+						<h2 className="text-3xl font-semibold mb-8">Your Progress</h2>
+						<div className="bg-base-200 p-6 rounded-lg shadow-lg">
+							<p className="text-xl mb-4">
+								You're making great progress! Don't forget to check out our
+								latest modules.
+							</p>
+							<Link href="/dashboard">
+								<button className="btn btn-primary">Continue Learning</button>
+							</Link>
+						</div>
+					</section>
+				)}
+
+				{/* ... (rest of the sections) ... */}
 				<section className="bg-base-200 py-16">
 					<div className="container mx-auto px-4">
 						<h2 className="text-4xl font-bold mb-8 text-center">
