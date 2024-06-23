@@ -8,11 +8,13 @@ import {
 	FaChartLine,
 	FaQuestionCircle,
 	FaCog,
+	FaBars,
 } from "react-icons/fa";
 import VerticalNavbar from "../components/verticalNavbar";
 
 export default function Dashboard() {
 	const [activeTab, setActiveTab] = useState("home");
+	const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
 	const navItems = [
 		{ id: "home", icon: FaHome, label: "Home" },
@@ -43,17 +45,37 @@ export default function Dashboard() {
 	};
 
 	return (
-		<div className="bg-base-100 min-h-screen flex">
+		<div className="bg-base-100 min-h-screen flex flex-col md:flex-row">
 			<Head>
 				<title>Dashboard | Full Stack Web Development</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
+			{/* Mobile navbar toggle */}
+			<div className="md:hidden p-4">
+				<button
+					onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+					className="btn btn-square btn-ghost"
+				>
+					<FaBars size={24} />
+				</button>
+			</div>
+
 			{/* Vertical Navbar */}
-			<VerticalNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
+			<div className={`md:block ${isMobileNavOpen ? "block" : "hidden"}`}>
+				<VerticalNavbar
+					activeTab={activeTab}
+					setActiveTab={(tab) => {
+						setActiveTab(tab);
+						setIsMobileNavOpen(false);
+					}}
+				/>
+			</div>
 
 			{/* Main Content */}
-			<main className="flex-grow p-8">{renderContent()}</main>
+			<main className="flex-grow p-4 md:p-8 overflow-y-auto">
+				{renderContent()}
+			</main>
 		</div>
 	);
 }
@@ -61,17 +83,22 @@ export default function Dashboard() {
 function HomeContent() {
 	return (
 		<div>
-			<h2 className="text-3xl font-bold mb-6">Welcome back!</h2>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			<h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
+				Welcome back!
+			</h2>
+			<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
 				<div className="card bg-primary text-primary-content">
 					<div className="card-body">
-						<h2 className="card-title">Continue Learning</h2>
-						<p>Pick up where you left off in "Advanced React Patterns"</p>
+						<h2 className="card-title text-lg md:text-xl">Continue Learning</h2>
+						<p className="text-sm md:text-base">
+							Pick up where you left off in "Advanced React Patterns"
+						</p>
 						<div className="card-actions justify-end">
-							<button className="btn">Start</button>
+							<button className="btn btn-sm md:btn-md">Start</button>
 						</div>
 					</div>
 				</div>
+				{/* Repeat similar changes for other cards */}
 				<div className="card bg-secondary text-secondary-content">
 					<div className="card-body">
 						<h2 className="card-title">New This Week</h2>
@@ -98,8 +125,10 @@ function HomeContent() {
 function LibraryContent() {
 	return (
 		<div>
-			<h2 className="text-3xl font-bold mb-6">Course Library</h2>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			<h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
+				Course Library
+			</h2>
+			<div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-6">
 				{[
 					"JavaScript Fundamentals",
 					"React Essentials",
@@ -110,12 +139,14 @@ function LibraryContent() {
 				].map((course) => (
 					<div key={course} className="card bg-base-200 shadow-xl">
 						<div className="card-body">
-							<h2 className="card-title">{course}</h2>
-							<p>
+							<h2 className="card-title text-lg md:text-xl">{course}</h2>
+							<p className="text-sm md:text-base">
 								Learn the ins and outs of {course} in this comprehensive module.
 							</p>
 							<div className="card-actions justify-end">
-								<button className="btn btn-primary">Start Course</button>
+								<button className="btn btn-primary btn-sm md:btn-md">
+									Start Course
+								</button>
 							</div>
 						</div>
 					</div>
@@ -128,18 +159,24 @@ function LibraryContent() {
 function PracticeContent() {
 	return (
 		<div>
-			<h2 className="text-3xl font-bold mb-6">Practice Arena</h2>
+			<h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
+				Practice Arena
+			</h2>
 			<div className="card bg-base-200 shadow-xl">
 				<div className="card-body">
-					<h2 className="card-title">Code Editor</h2>
-					<p>Practice your skills in our interactive code editor.</p>
+					<h2 className="card-title text-lg md:text-xl">Code Editor</h2>
+					<p className="text-sm md:text-base">
+						Practice your skills in our interactive code editor.
+					</p>
 					<div className="mockup-code mt-4">
 						<pre data-prefix="$">
 							<code>npm run dev</code>
 						</pre>
 					</div>
 					<div className="card-actions justify-end mt-4">
-						<button className="btn btn-primary">Open Editor</button>
+						<button className="btn btn-primary btn-sm md:btn-md">
+							Open Editor
+						</button>
 					</div>
 				</div>
 			</div>
@@ -150,31 +187,43 @@ function PracticeContent() {
 function ProgressContent() {
 	return (
 		<div>
-			<h2 className="text-3xl font-bold mb-6">Your Progress</h2>
-			<div className="stats shadow">
+			<h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
+				Your Progress
+			</h2>
+			<div className="stats stats-vertical sm:stats-horizontal shadow">
 				<div className="stat">
 					<div className="stat-figure text-primary">
-						<FaBook className="w-8 h-8" />
+						<FaBook className="w-6 h-6 md:w-8 md:h-8" />
 					</div>
-					<div className="stat-title">Courses Completed</div>
-					<div className="stat-value text-primary">3</div>
-					<div className="stat-desc">Out of 6 total courses</div>
+					<div className="stat-title text-xs md:text-sm">Courses Completed</div>
+					<div className="stat-value text-primary text-2xl md:text-4xl">3</div>
+					<div className="stat-desc text-xs md:text-sm">
+						Out of 6 total courses
+					</div>
 				</div>
+
 				<div className="stat">
 					<div className="stat-figure text-secondary">
-						<FaCode className="w-8 h-8" />
+						<FaCode className="w-6 h-6 md:w-8 md:h-8" />
 					</div>
-					<div className="stat-title">Coding Challenges</div>
-					<div className="stat-value text-secondary">42</div>
-					<div className="stat-desc">Completed this month</div>
+					<div className="stat-title text-xs md:text-sm">Coding Challenges</div>
+					<div className="stat-value text-secondary text-2xl md:text-4xl">
+						42
+					</div>
+					<div className="stat-desc text-xs md:text-sm">
+						Completed this month
+					</div>
 				</div>
+
 				<div className="stat">
 					<div className="stat-figure text-accent">
-						<FaChartLine className="w-8 h-8" />
+						<FaChartLine className="w-6 h-6 md:w-8 md:h-8" />
 					</div>
-					<div className="stat-title">Overall Progress</div>
-					<div className="stat-value text-accent">70%</div>
-					<div className="stat-desc">Towards course completion</div>
+					<div className="stat-title text-xs md:text-sm">Overall Progress</div>
+					<div className="stat-value text-accent text-2xl md:text-4xl">70%</div>
+					<div className="stat-desc text-xs md:text-sm">
+						Towards course completion
+					</div>
 				</div>
 			</div>
 		</div>
@@ -184,16 +233,18 @@ function ProgressContent() {
 function SupportContent() {
 	return (
 		<div>
-			<h2 className="text-3xl font-bold mb-6">Support</h2>
+			<h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Support</h2>
 			<div className="card bg-base-200 shadow-xl">
 				<div className="card-body">
-					<h2 className="card-title">Need Help?</h2>
-					<p>
+					<h2 className="card-title text-lg md:text-xl">Need Help?</h2>
+					<p className="text-sm md:text-base">
 						Our support team is here to assist you. Feel free to reach out with
 						any questions or concerns.
 					</p>
 					<div className="card-actions justify-end mt-4">
-						<button className="btn btn-primary">Contact Support</button>
+						<button className="btn btn-primary btn-sm md:btn-md">
+							Contact Support
+						</button>
 					</div>
 				</div>
 			</div>
@@ -204,10 +255,14 @@ function SupportContent() {
 function SettingsContent() {
 	return (
 		<div>
-			<h2 className="text-3xl font-bold mb-6">Account Settings</h2>
+			<h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">
+				Account Settings
+			</h2>
 			<div className="card bg-base-200 shadow-xl">
 				<div className="card-body">
-					<h2 className="card-title">Personal Information</h2>
+					<h2 className="card-title text-lg md:text-xl">
+						Personal Information
+					</h2>
 					<form className="form-control w-full max-w-xs">
 						<label className="label">
 							<span className="label-text">Email</span>
@@ -226,7 +281,9 @@ function SettingsContent() {
 							className="input input-bordered w-full max-w-xs"
 						/>
 						<div className="card-actions justify-end mt-6">
-							<button className="btn btn-primary">Save Changes</button>
+							<button className="btn btn-primary btn-sm md:btn-md">
+								Save Changes
+							</button>
 						</div>
 					</form>
 				</div>
