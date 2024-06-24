@@ -9,6 +9,7 @@ import {
 	Briefcase,
 	GraduationCap,
 } from "lucide-react";
+import { useAuth } from "../../contexts/AuthContext";
 
 const ProfileField = ({ icon, label, value }) => (
 	<div className="flex items-center space-x-3 mb-4">
@@ -21,6 +22,8 @@ const ProfileField = ({ icon, label, value }) => (
 );
 
 const Profile = ({ profileData }) => {
+	const { user } = useAuth(); // Make sure useAuth returns an object with user
+
 	if (!profileData) {
 		return (
 			<div className="flex justify-center items-center h-screen bg-base-200">
@@ -41,11 +44,8 @@ const Profile = ({ profileData }) => {
 						<div className="flex flex-col sm:flex-row items-center sm:items-end -mt-20 mb-6">
 							<div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white bg-white shadow-lg">
 								<img
-									src={
-										profileData.profilePicture ||
-										"https://via.placeholder.com/128"
-									}
-									alt={`${profileData.fname} ${profileData.lname}`}
+									src={user?.photoURL || "https://via.placeholder.com/150"}
+									alt="Profile"
 									className="w-full h-full object-cover"
 								/>
 							</div>
@@ -105,7 +105,6 @@ export async function getServerSideProps(context) {
 	try {
 		const response = await axios.get(`https://api.jsprodigy.com/users/${uid}`);
 		const profileData = response.data;
-		console.log(profileData);
 		return {
 			props: {
 				profileData,
