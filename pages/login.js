@@ -1,5 +1,5 @@
 // pages/login.js
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import {
 	doSignIn,
@@ -7,6 +7,7 @@ import {
 	getAccessToken,
 } from "../firebase/FirebaseFunctions";
 import { getAuth } from "firebase/auth";
+import { useAuth } from "@/contexts/AuthContext";
 import Navbar from "../components/Navbar";
 import axios from "axios";
 
@@ -15,6 +16,16 @@ const LoginPage = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(null);
+
+	const { user } = useAuth();
+	const auth = getAuth();
+	const currentUser = auth.currentUser;
+	console.log(currentUser);
+	useEffect(() => {
+		if (currentUser) {
+			router.push("/");
+		}
+	}, [user]);
 
 	const handleEmailSignIn = async (e) => {
 		e.preventDefault();
