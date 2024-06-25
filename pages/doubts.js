@@ -52,7 +52,7 @@ const DoubtItem = ({ doubt, onReply, onAIReply }) => {
 		} else {
 			return (
 				<div className="bg-base-100 p-2 rounded">
-					<p className="text-sm">{reply.reply}</p>
+					<pre className="text-sm whitespace-pre-wrap">{reply.reply}</pre>
 				</div>
 			);
 		}
@@ -63,7 +63,9 @@ const DoubtItem = ({ doubt, onReply, onAIReply }) => {
 			<div className="flex items-start space-x-3">
 				<User className="text-base-content opacity-50" />
 				<div className="w-full">
-					<p className="text-base-content">{doubt.doubt}</p>
+					<pre className="text-base-content whitespace-pre-wrap">
+						{doubt.doubt}
+					</pre>
 					<div className="mt-2 space-x-2">
 						<button
 							className="btn btn-sm btn-outline"
