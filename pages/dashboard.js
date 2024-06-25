@@ -177,9 +177,11 @@ function PracticeContent() {
 						</pre>
 					</div>
 					<div className="card-actions justify-end mt-4">
-						<button className="btn btn-primary btn-sm md:btn-md">
-							Open Editor
-						</button>
+						<Link href={`/practice`}>
+							<button className="btn btn-primary btn-sm md:btn-md">
+								Open Editor
+							</button>
+						</Link>
 					</div>
 				</div>
 			</div>
@@ -245,9 +247,11 @@ function SupportContent() {
 						any questions or concerns.
 					</p>
 					<div className="card-actions justify-end mt-4">
-						<button className="btn btn-primary btn-sm md:btn-md">
-							Contact Support
-						</button>
+						<Link href={`/contact`}>
+							<button className="btn btn-primary btn-sm md:btn-md">
+								Contact Support
+							</button>
+						</Link>
 					</div>
 				</div>
 			</div>

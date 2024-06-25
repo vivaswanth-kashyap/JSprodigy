@@ -29,7 +29,7 @@ const Navbar = () => {
         <div className="navbar-start">
           <Link href="/" className="flex items-center">
             <Image src="/logo.svg" alt="Logo" width={32} height={32} />
-            <span className="ml-2 text-2xl font-semibold text-primary">jsProdigy</span>
+            <span className="ml-2 text-2xl font-semibold text-primary">JSProdigy</span>
           </Link>
         </div>
         <div className="navbar-end space-x-4">
