@@ -164,6 +164,7 @@ export default function Community({ doubts: initialDoubts }) {
 
 	const handleAIReply = async (doubtId, doubtContent) => {
 		try {
+			console.log("Sending AI reply request:", { doubtId, doubtContent });
 			const response = await axios.post(
 				`https://api.jsprodigy.com/doubts/ai-response`,
 				{
@@ -171,6 +172,7 @@ export default function Community({ doubts: initialDoubts }) {
 					id: doubtId,
 				}
 			);
+			console.log("AI reply response:", response.data);
 			const updatedDoubt = response.data;
 			setDoubts((prevDoubts) =>
 				prevDoubts.map((doubt) =>
@@ -178,7 +180,8 @@ export default function Community({ doubts: initialDoubts }) {
 				)
 			);
 		} catch (error) {
-			console.error(error);
+			console.error("AI reply error:", error);
+			// Handle the error appropriately (e.g., show an error message to the user)
 		}
 	};
 
