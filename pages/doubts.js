@@ -10,17 +10,52 @@ const DoubtItem = ({ doubt, onReply, onAIReply }) => {
 	const [replyContent, setReplyContent] = useState("");
 	const [isAIReplying, setIsAIReplying] = useState(false);
 
-	const handleSubmitReply = (e) => {
+	const handleSubmitReply = async (e) => {
 		e.preventDefault();
-		onReply(doubt.id, replyContent);
+		await onReply(doubt._id, replyContent);
 		setIsReplying(false);
 		setReplyContent("");
 	};
 
 	const handleAIReply = async () => {
 		setIsAIReplying(true);
-		await onAIReply(doubt.id, doubt.doubt);
+		await onAIReply(doubt._id, doubt.doubt);
 		setIsAIReplying(false);
+	};
+
+	const renderReply = (reply) => {
+		if (reply.isAI) {
+			const aiReply = JSON.parse(reply.reply);
+			return (
+				<div className="bg-blue-100 p-2 rounded">
+					<div className="flex items-center space-x-2 mb-2">
+						<Bot className="text-primary" />
+						<span className="font-semibold">AI Response</span>
+					</div>
+					<h4 className="font-semibold">{aiReply.title}</h4>
+					{aiReply.steps &&
+						aiReply.steps.map((step, index) => (
+							<div key={index} className="mt-2">
+								<p>{step.description}</p>
+								{step.code && (
+									<pre className="bg-gray-100 p-2 rounded mt-1 overflow-x-auto">
+										<code className={`language-${step.language}`}>
+											{step.code}
+										</code>
+									</pre>
+								)}
+							</div>
+						))}
+					<p className="mt-2">{aiReply.conclusion}</p>
+				</div>
+			);
+		} else {
+			return (
+				<div className="bg-base-100 p-2 rounded">
+					<p className="text-sm">{reply.reply}</p>
+				</div>
+			);
+		}
 	};
 
 	return (
@@ -72,33 +107,7 @@ const DoubtItem = ({ doubt, onReply, onAIReply }) => {
 						<div className="mt-4 space-y-2">
 							<h3 className="font-semibold">Replies:</h3>
 							{doubt.replies.map((reply, index) => (
-								<div key={index} className="bg-base-100 p-2 rounded">
-									{reply.isAI ? (
-										<div>
-											<div className="flex items-center space-x-2 mb-2">
-												<Bot className="text-primary" />
-												<span className="font-semibold">AI Response</span>
-											</div>
-											<h4 className="font-semibold">{reply.title}</h4>
-											{reply.steps &&
-												reply.steps.map((step, stepIndex) => (
-													<div key={stepIndex} className="mt-2">
-														<p>{step.description}</p>
-														{step.code && (
-															<pre className="bg-gray-100 p-2 rounded mt-1 overflow-x-auto">
-																<code className={`language-${step.language}`}>
-																	{step.code}
-																</code>
-															</pre>
-														)}
-													</div>
-												))}
-											<p className="mt-2">{reply.conclusion}</p>
-										</div>
-									) : (
-										<p className="text-sm">{reply.content}</p>
-									)}
-								</div>
+								<div key={index}>{renderReply(reply)}</div>
 							))}
 						</div>
 					)}
@@ -133,20 +142,24 @@ export default function Community({ doubts: initialDoubts }) {
 	};
 
 	const handleReply = async (doubtId, replyContent) => {
-		// Since there's no API endpoint for replies, we'll update the state locally
-		setDoubts((prevDoubts) =>
-			prevDoubts.map((doubt) =>
-				doubt.id === doubtId
-					? {
-							...doubt,
-							replies: [
-								...(doubt.replies || []),
-								{ content: replyContent, isAI: false },
-							],
-					  }
-					: doubt
-			)
-		);
+		try {
+			const response = await axios.post(
+				"https://api.jsprodigy.com/doubts/reply",
+				{
+					uid,
+					id: doubtId,
+					reply: replyContent,
+				}
+			);
+			const updatedDoubt = response.data;
+			setDoubts((prevDoubts) =>
+				prevDoubts.map((doubt) =>
+					doubt._id === doubtId ? updatedDoubt : doubt
+				)
+			);
+		} catch (error) {
+			console.error(error);
+		}
 	};
 
 	const handleAIReply = async (doubtId, doubtContent) => {
@@ -155,20 +168,13 @@ export default function Community({ doubts: initialDoubts }) {
 				`https://api.jsprodigy.com/doubts/ai-response`,
 				{
 					doubt: doubtContent,
+					id: doubtId,
 				}
 			);
-			console.log(response.data);
-
-			const aiReply = {
-				isAI: true,
-				...response.data.response,
-			};
-
+			const updatedDoubt = response.data;
 			setDoubts((prevDoubts) =>
 				prevDoubts.map((doubt) =>
-					doubt.id === doubtId
-						? { ...doubt, replies: [...(doubt.replies || []), aiReply] }
-						: doubt
+					doubt._id === doubtId ? updatedDoubt : doubt
 				)
 			);
 		} catch (error) {
@@ -220,7 +226,7 @@ export default function Community({ doubts: initialDoubts }) {
 								<ul className="space-y-4">
 									{doubts.map((doubt) => (
 										<DoubtItem
-											key={doubt.id}
+											key={doubt._id}
 											doubt={doubt}
 											onReply={handleReply}
 											onAIReply={handleAIReply}
