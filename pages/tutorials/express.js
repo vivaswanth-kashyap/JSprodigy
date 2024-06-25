@@ -24,7 +24,7 @@ const Express = () => {
 
 	const tabs = {
 		setup: {
-			title: "Project Setup",
+			title: "Setup",
 			content: `
 1. Create a new folder for the project
 2. Run \`npm init -y\`
@@ -39,7 +39,7 @@ const Express = () => {
       `,
 		},
 		config: {
-			title: "Configuration Files",
+			title: "Config",
 			content: `
 Inside the config folder, create 3 files:
 1. MongoConnection.js
@@ -49,7 +49,7 @@ These files handle database connection, collection management, and configuration
       `,
 		},
 		appjs: {
-			title: "app.js Setup",
+			title: "app.js",
 			content: `
 In app.js, set up the Express server with the following:
 - Import required modules
@@ -61,7 +61,7 @@ Here's the complete code for app.js:
       `,
 		},
 		routes: {
-			title: "Routing Setup",
+			title: "Routes",
 			content: `
 In the routes folder, create an index.js file to manage all your routes.
 This file will import individual route files and combine them.
@@ -150,34 +150,38 @@ export default constructorMethod;
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className="container mx-auto px-4 py-8">
-				<h1 className="text-3xl font-bold mb-6">
+				<h1 className="text-2xl md:text-3xl font-bold mb-6">
 					Getting Started with Express and MongoDB
 				</h1>
-				<div className="tabs tabs-boxed mb-4">
+				<div className="tabs tabs-boxed mb-4 flex flex-wrap justify-start">
 					{Object.keys(tabs).map((tabKey) => (
 						<a
 							key={tabKey}
-							className={`tab ${activeTab === tabKey ? "tab-active" : ""}`}
+							className={`tab tab-sm md:tab-md ${
+								activeTab === tabKey ? "tab-active" : ""
+							} m-1`}
 							onClick={() => setActiveTab(tabKey)}
 						>
 							{tabs[tabKey].title}
 						</a>
 					))}
 				</div>
-				<div className="bg-base-200 p-6 rounded-box">
-					<h2 className="text-2xl font-semibold mb-4">
+				<div className="bg-base-200 p-4 md:p-6 rounded-box">
+					<h2 className="text-xl md:text-2xl font-semibold mb-4">
 						{tabs[activeTab].title}
 					</h2>
-					<pre className="whitespace-pre-wrap">{tabs[activeTab].content}</pre>
+					<pre className="whitespace-pre-wrap text-sm md:text-base">
+						{tabs[activeTab].content}
+					</pre>
 					{(activeTab === "appjs" || activeTab === "routes") && (
 						<div className="mt-4">
-							<div className="flex justify-between items-center mb-2">
-								<h4 className="text-lg font-semibold">
+							<div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+								<h4 className="text-lg font-semibold mb-2 md:mb-0">
 									{activeTab === "appjs" ? "app.js" : "routes/index.js"}
 								</h4>
 								<CopyButton text={codeSnippets[activeTab]} />
 							</div>
-							<div className="mockup-code">
+							<div className="mockup-code text-xs md:text-sm">
 								{codeSnippets[activeTab].split("\n").map((line, index) => (
 									<pre key={index} data-prefix={index + 1}>
 										<code>{line}</code>
@@ -196,11 +200,13 @@ export default constructorMethod;
 								.map(([name, code]) => (
 									<div key={name} className="card bg-base-200 shadow-xl">
 										<div className="card-body">
-											<div className="flex justify-between items-center mb-2">
-												<h4 className="card-title">{name}.js</h4>
+											<div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+												<h4 className="card-title text-lg mb-2 md:mb-0">
+													{name}.js
+												</h4>
 												<CopyButton text={code} />
 											</div>
-											<div className="mockup-code">
+											<div className="mockup-code text-xs md:text-sm">
 												{code.split("\n").map((line, index) => (
 													<pre key={index} data-prefix={index + 1}>
 														<code>{line}</code>

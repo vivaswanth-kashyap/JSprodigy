@@ -24,7 +24,7 @@ const Postman = () => {
 
 	const tabs = {
 		introduction: {
-			title: "Introduction to Postman",
+			title: "Introduction",
 			content: `
 Postman is a popular API development and testing tool. It allows you to:
 - Send HTTP requests
@@ -35,7 +35,7 @@ This guide will help you download and set up Postman on different operating syst
       `,
 		},
 		windows: {
-			title: "Download for Windows",
+			title: "Windows",
 			content: `
 To download and install Postman on Windows:
 1. Visit the official Postman website: https://www.postman.com/downloads/
@@ -46,7 +46,7 @@ To download and install Postman on Windows:
       `,
 		},
 		mac: {
-			title: "Download for macOS",
+			title: "macOS",
 			content: `
 To download and install Postman on macOS:
 1. Go to the Postman downloads page: https://www.postman.com/downloads/
@@ -57,7 +57,7 @@ To download and install Postman on macOS:
       `,
 		},
 		linux: {
-			title: "Download for Linux",
+			title: "Linux",
 			content: `
 To install Postman on Linux:
 1. Visit: https://www.postman.com/downloads/
@@ -72,7 +72,7 @@ To install Postman on Linux:
       `,
 		},
 		setup: {
-			title: "Initial Setup",
+			title: "Setup",
 			content: `
 After installing Postman, follow these steps to get started:
 1. Launch Postman
@@ -95,32 +95,38 @@ After installing Postman, follow these steps to get started:
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<main className="container mx-auto px-4 py-8">
-				<h1 className="text-3xl font-bold mb-6">
+				<h1 className="text-2xl md:text-3xl font-bold mb-6">
 					Getting Started with Postman
 				</h1>
-				<div className="tabs tabs-boxed mb-4">
+				<div className="tabs tabs-boxed mb-4 flex flex-wrap justify-center">
 					{Object.keys(tabs).map((tabKey) => (
 						<a
 							key={tabKey}
-							className={`tab ${activeTab === tabKey ? "tab-active" : ""}`}
+							className={`tab tab-sm md:tab-md ${
+								activeTab === tabKey ? "tab-active" : ""
+							}`}
 							onClick={() => setActiveTab(tabKey)}
 						>
 							{tabs[tabKey].title}
 						</a>
 					))}
 				</div>
-				<div className="bg-base-200 p-6 rounded-box">
-					<h2 className="text-2xl font-semibold mb-4">
+				<div className="bg-base-200 p-4 md:p-6 rounded-box">
+					<h2 className="text-xl md:text-2xl font-semibold mb-4">
 						{tabs[activeTab].title}
 					</h2>
-					<pre className="whitespace-pre-wrap">{tabs[activeTab].content}</pre>
+					<pre className="whitespace-pre-wrap text-sm md:text-base">
+						{tabs[activeTab].content}
+					</pre>
 					{activeTab === "setup" && (
 						<div className="mt-4">
-							<div className="flex justify-between items-center mb-2">
-								<h4 className="text-lg font-semibold">Example GET Request</h4>
+							<div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-2">
+								<h4 className="text-lg font-semibold mb-2 md:mb-0">
+									Example GET Request
+								</h4>
 								<CopyButton text="GET https://postman-echo.com/get" />
 							</div>
-							<div className="mockup-code">
+							<div className="mockup-code text-xs md:text-sm">
 								<pre data-prefix="1">
 									<code>GET https://postman-echo.com/get</code>
 								</pre>
@@ -128,16 +134,24 @@ After installing Postman, follow these steps to get started:
 						</div>
 					)}
 				</div>
-				<div className="mt-6 text-sm text-gray-600">
-					<h3 className="text-lg font-semibold mb-2">Disclaimer:</h3>
+				<div className="mt-6 text-xs md:text-sm text-gray-600">
+					<h3 className="text-base md:text-lg font-semibold mb-2">
+						Disclaimer:
+					</h3>
 					<p>
 						Postman® is a registered trademark of Postman, Inc. This tutorial is
 						for educational purposes only and is not affiliated with or endorsed
 						by Postman, Inc. For the most up-to-date information, please visit
 						the official Postman website at{" "}
-						<a href="https://www.postman.com" target="_blank">
-							https://www.postman.com.
+						<a
+							href="https://www.postman.com"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="link link-primary"
+						>
+							https://www.postman.com
 						</a>
+						.
 					</p>
 				</div>
 			</main>
