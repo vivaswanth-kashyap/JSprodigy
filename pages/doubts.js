@@ -204,7 +204,7 @@ export default function Community({ doubts: initialDoubts }) {
 				</div>
 
 				<div className="space-y-8">
-					<div className="card bg-base-100 shadow-xl">
+					<div className="card bg-base-100 shadow-xl sticky">
 						<div className="card-body">
 							<h2 className="card-title text-2xl text-primary flex items-center">
 								<MessageCircle className="mr-2" />

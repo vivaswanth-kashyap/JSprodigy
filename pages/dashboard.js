@@ -102,19 +102,21 @@ function HomeContent() {
 				</div>
 				<div className="card bg-secondary text-secondary-content">
 					<div className="card-body">
-						<h2 className="card-title">Continue Learning</h2>
-						<p>Pick up where you left off in "Advanced React Patterns"</p>
+						<h2 className="card-title">Postman Guide</h2>
+						<p>Download and setup Postman</p>
 						<div className="card-actions justify-end">
-							<button className="btn">Resume</button>
+							<Link href="/tutorials/postman" className="btn btn-sm md:btn-md">
+								View Guide
+							</Link>
 						</div>
 					</div>
 				</div>
 				<div className="card bg-accent text-accent-content">
 					<div className="card-body">
-						<h2 className="card-title">Weekly Challenge</h2>
-						<p>Build a RESTful API using Express and MongoDB</p>
+						<h2 className="card-title">Continue Learning</h2>
+						<p>Pick up where you left off in "Advanced React Patterns"</p>
 						<div className="card-actions justify-end">
-							<button className="btn">Start Challenge</button>
+							<button className="btn">Resume</button>
 						</div>
 					</div>
 				</div>
