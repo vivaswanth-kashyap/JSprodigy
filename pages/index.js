@@ -86,9 +86,10 @@ export default function Home() {
 									<p className="text-2xl font-semibold mb-4">
 										New Batch Starting from July 1st!
 									</p>
-									<ul className="list-disc pl-8 text-lg">
-										<li className="mb-2">Live online classes</li>
+									<ul className="list-disc pl-8 text-lg space-y-2">
+										<li>Live online classes</li>
 										<li>Recordings accessible for 2 years</li>
+										<li>Live 24/7 Doubt Support</li>
 									</ul>
 								</div>
 								<Link href="/enroll">
@@ -98,6 +99,87 @@ export default function Home() {
 								</Link>
 							</div>
 						)}
+					</div>
+				</section>
+
+				<section className="container mx-auto py-16 px-4">
+					<div className="bg-base-200 rounded-lg shadow-xl overflow-hidden">
+						<div className="flex flex-col md:flex-row items-center">
+							<div className="md:w-1/2 p-8">
+								<h2 className="text-3xl font-bold mb-4">
+									AI-Powered Community Support
+								</h2>
+								<p className="text-xl mb-6">
+									Get instant answers to your coding questions with our
+									AI-powered community section.
+								</p>
+								<ul className="space-y-4">
+									<li className="flex items-center">
+										<svg
+											className="w-6 h-6 mr-2 text-primary"
+											fill="none"
+											stroke="currentColor"
+											viewBox="0 0 24 24"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												strokeWidth="2"
+												d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+											></path>
+										</svg>
+										<span>24/7 AI-powered doubt resolution</span>
+									</li>
+									<li className="flex items-center">
+										<svg
+											className="w-6 h-6 mr-2 text-primary"
+											fill="none"
+											stroke="currentColor"
+											viewBox="0 0 24 24"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												strokeWidth="2"
+												d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+											></path>
+										</svg>
+										<span>Instant responses to your questions</span>
+									</li>
+									<li className="flex items-center">
+										<svg
+											className="w-6 h-6 mr-2 text-primary"
+											fill="none"
+											stroke="currentColor"
+											viewBox="0 0 24 24"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												strokeLinecap="round"
+												strokeLinejoin="round"
+												strokeWidth="2"
+												d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+											></path>
+										</svg>
+										<span>Learn from AI-curated explanations</span>
+									</li>
+								</ul>
+							</div>
+							<div className="md:w-1/2 p-8 bg-base-300">
+								<div className="relative">
+									<img
+										src="/community-ai.svg"
+										alt="AI-powered community support"
+										className="w-full h-auto max-h-80"
+									/>
+									<div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+										<div className="animate-pulse bg-primary opacity-30 rounded-full w-32 h-32"></div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</section>
 
