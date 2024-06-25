@@ -113,6 +113,7 @@ export default function Home() {
 									Get instant answers to your coding questions with our
 									AI-powered community section.
 								</p>
+
 								<ul className="space-y-4">
 									<li className="flex items-center">
 										<svg
@@ -166,6 +167,21 @@ export default function Home() {
 										<span>Learn from AI-curated explanations</span>
 									</li>
 								</ul>
+								{user && courseAccess ? (
+									<div className="mt-8">
+										<Link href={`/doubts`}>
+											<button className="btn btn-outline btn-secondary">
+												Try out
+											</button>
+										</Link>
+									</div>
+								) : (
+									<div className="mt-8 lg:tooltip" data-tip="enroll to try out">
+										<button className="btn btn-outline btn-disabled" disabled>
+											Try out
+										</button>
+									</div>
+								)}
 							</div>
 							<div className="md:w-1/2 p-8 bg-base-300">
 								<div className="relative">
