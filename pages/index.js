@@ -60,7 +60,7 @@ export default function Home() {
 			<Navbar />
 
 			<main>
-				<section className="bg-gradient-to-r from-primary to-secondary rounded-lg text-white py-20 shadow-3xl mx-auto">
+				<section className="bg-gradient-to-r from-primary to-secondary text-white py-20 shadow-3xl mx-auto">
 					<div className="container mx-auto px-4">
 						<h1 className="text-4xl font-bold mb-4">
 							Master Full Stack Web Development with JavaScript
