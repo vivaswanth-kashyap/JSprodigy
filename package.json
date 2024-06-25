@@ -18,7 +18,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.2.1",
-    "react-monaco-editor": "^0.55.0"
+    "react-monaco-editor": "^0.55.0",
+    "video.js": "^8.12.0"
   },
   "devDependencies": {
     "daisyui": "^4.12.2",
