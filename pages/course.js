@@ -10,9 +10,11 @@ const CoursePage = ({ course }) => {
 	const [selectedVideo, setSelectedVideo] = useState(null);
 	const [videoId, setVideoId] = useState(null);
 	const [error, setError] = useState(null);
+	const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
-	const handleVideoSelect = async (video) => {
+	const handleVideoSelect = async (video, index) => {
 		setSelectedVideo(video);
+		setCurrentVideoIndex(index);
 		setError(null);
 		try {
 			const response = await axios.get(
@@ -26,9 +28,27 @@ const CoursePage = ({ course }) => {
 		}
 	};
 
+	const handlePreviousVideo = () => {
+		if (currentVideoIndex > 0) {
+			handleVideoSelect(
+				course.videos[currentVideoIndex - 1],
+				currentVideoIndex - 1
+			);
+		}
+	};
+
+	const handleNextVideo = () => {
+		if (currentVideoIndex < course.videos.length - 1) {
+			handleVideoSelect(
+				course.videos[currentVideoIndex + 1],
+				currentVideoIndex + 1
+			);
+		}
+	};
+
 	useEffect(() => {
 		if (course.videos && course.videos.length > 0) {
-			handleVideoSelect(course.videos[0]);
+			handleVideoSelect(course.videos[0], 0);
 		}
 	}, [course.videos]);
 
@@ -79,15 +99,33 @@ const CoursePage = ({ course }) => {
 							</div>
 						</div>
 
-						{/* Video Title */}
-						{selectedVideo && (
-							<h2 className="text-xl font-semibold mt-4 text-base-content">
-								{selectedVideo.name}
-							</h2>
-						)}
+						{/* Video Title and Navigation Buttons */}
+						<div className="mt-4 space-y-4">
+							{selectedVideo && (
+								<h2 className="text-xl font-semibold text-base-content">
+									{selectedVideo.name}
+								</h2>
+							)}
+							<div className="flex justify-between items-center">
+								<button
+									onClick={handlePreviousVideo}
+									className="btn btn-primary"
+									disabled={currentVideoIndex === 0}
+								>
+									Previous Video
+								</button>
+								<button
+									onClick={handleNextVideo}
+									className="btn btn-primary"
+									disabled={currentVideoIndex === course.videos.length - 1}
+								>
+									Next Video
+								</button>
+							</div>
+						</div>
 
 						{/* Course Content Section */}
-						<div className="mt-8">
+						<div className="my-8">
 							<h3 className="text-xl font-semibold mb-4 text-base-content">
 								Course Content
 							</h3>
@@ -100,7 +138,7 @@ const CoursePage = ({ course }) => {
 												? "border-b border-base-300"
 												: ""
 										}`}
-										onClick={() => handleVideoSelect(video)}
+										onClick={() => handleVideoSelect(video, index)}
 									>
 										<div className="flex items-center">
 											<span className="mr-3 text-primary">{index + 1}.</span>
