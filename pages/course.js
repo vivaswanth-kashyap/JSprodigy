@@ -1,15 +1,15 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 import Link from "next/link";
+import VimeoPlayer from "../components/VimeoPlayer"; // Make sure to create this file in the same directory
 
 const API_URL = "https://api.jsprodigy.com" || "http://localhost:4000";
 
 const Course = ({ course }) => {
 	const [selectedVideo, setSelectedVideo] = useState(null);
-	const [videoUrl, setVideoUrl] = useState(null);
+	const [videoId, setVideoId] = useState(null);
 	const [error, setError] = useState(null);
-	const videoRef = useRef(null);
 
 	const handleVideoSelect = async (video) => {
 		setSelectedVideo(video);
@@ -18,10 +18,10 @@ const Course = ({ course }) => {
 			const response = await axios.get(
 				`${API_URL}/videos/${encodeURIComponent(video.key)}`
 			);
-			setVideoUrl(response.data.url);
+			setVideoId(response.data.id);
 		} catch (error) {
-			console.error("Failed to fetch video URL:", error);
-			setVideoUrl(null);
+			console.error("Failed to fetch video details:", error);
+			setVideoId(null);
 			setError("Failed to load video. Please try again later.");
 		}
 	};
@@ -31,12 +31,6 @@ const Course = ({ course }) => {
 			handleVideoSelect(course.videos[0]);
 		}
 	}, [course.videos]);
-
-	useEffect(() => {
-		if (videoRef.current && videoUrl) {
-			videoRef.current.load();
-		}
-	}, [videoUrl]);
 
 	return (
 		<div className="min-h-screen bg-base-200">
@@ -50,29 +44,15 @@ const Course = ({ course }) => {
 						<p className="text-xl text-base-content opacity-70 mb-6">
 							{course.description}
 						</p>
-						<div
-							className="relative rounded-xl overflow-hidden shadow-2xl bg-base-300"
-							style={{ paddingTop: "56.25%" }}
-						>
-							{videoUrl ? (
-								<video
-									ref={videoRef}
-									controls
-									playsInline
-									className="absolute top-0 left-0 w-full h-full"
-									onError={() =>
-										setError("Failed to play video. Please try again later.")
-									}
-								>
-									<source src={videoUrl} type="video/mp4" />
-									Your browser does not support the video tag.
-								</video>
+						<div className="rounded-xl overflow-hidden shadow-2xl bg-base-300">
+							{videoId ? (
+								<VimeoPlayer videoId={videoId} />
 							) : error ? (
-								<div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+								<div className="flex items-center justify-center h-64">
 									<p className="text-error text-center p-4">{error}</p>
 								</div>
 							) : (
-								<div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+								<div className="flex items-center justify-center h-64">
 									<p className="text-base-content opacity-70">
 										Loading video...
 									</p>
@@ -81,7 +61,7 @@ const Course = ({ course }) => {
 						</div>
 						{selectedVideo && (
 							<h2 className="text-2xl font-semibold text-base-content mt-6">
-								{selectedVideo.key}
+								{selectedVideo.name}
 							</h2>
 						)}
 					</div>
@@ -100,7 +80,7 @@ const Course = ({ course }) => {
 									}`}
 									onClick={() => handleVideoSelect(video)}
 								>
-									{video.key}
+									{video.name}
 								</li>
 							))}
 						</ul>
