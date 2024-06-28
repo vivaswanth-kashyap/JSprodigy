@@ -27,7 +27,7 @@ const DoubtItem = ({ doubt, onReply, onAIReply }) => {
 		if (reply.isAI) {
 			const aiReply = JSON.parse(reply.reply);
 			return (
-				<div className="bg-blue-100 p-2 rounded">
+				<div className="bg-secondary p-2 rounded">
 					<div className="flex items-center space-x-2 mb-2">
 						<Bot className="text-primary" />
 						<span className="font-semibold">AI Response</span>
@@ -38,7 +38,7 @@ const DoubtItem = ({ doubt, onReply, onAIReply }) => {
 							<div key={index} className="mt-2">
 								<p>{step.description}</p>
 								{step.code && (
-									<pre className="bg-gray-100 p-2 rounded mt-1 overflow-x-auto">
+									<pre className="bg-base-100 p-2 rounded mt-1 overflow-x-auto">
 										<code className={`language-${step.language}`}>
 											{step.code}
 										</code>
