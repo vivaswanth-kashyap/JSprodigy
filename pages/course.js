@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import VimeoPlayer from "../components/VimeoPlayer";
 import Navbar from "../components/Navbar";
 
@@ -11,6 +13,37 @@ const CoursePage = ({ course }) => {
 	const [videoId, setVideoId] = useState(null);
 	const [error, setError] = useState(null);
 	const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [courseAccess, setCourseAccess] = useState(false);
+
+	const router = useRouter();
+
+	useEffect(() => {
+		const auth = getAuth();
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			setUser(user);
+			setLoading(false);
+		});
+
+		return () => unsubscribe();
+	}, []);
+
+	useEffect(() => {
+		const fetchUserData = async () => {
+			if (user) {
+				try {
+					const response = await axios.get(`${API_URL}/users/${user.uid}`);
+					setCourseAccess(response.data.courseAccess);
+				} catch (error) {
+					console.error("Error fetching user data:", error);
+					setCourseAccess(false);
+				}
+			}
+		};
+
+		fetchUserData();
+	}, [user]);
 
 	const handleVideoSelect = async (video, index) => {
 		setSelectedVideo(video);
@@ -65,6 +98,41 @@ const CoursePage = ({ course }) => {
 		return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
 	};
 
+	if (loading) {
+		return (
+			<div className="bg-base-100 min-h-screen">
+				<Navbar />
+				<div className="container flex justify-center my-72 mx-auto">
+					<span className="loading loading-dots loading-lg"></span>
+					<span className="loading loading-dots loading-lg"></span>
+				</div>
+			</div>
+		);
+	}
+
+	if (!courseAccess) {
+		return (
+			<div className="min-h-screen bg-base-200">
+				<Navbar />
+				<div className="container mx-auto py-12 px-4">
+					<div className="text-center">
+						<h1 className="text-4xl font-bold text-primary mb-4">
+							Access Restricted
+						</h1>
+						<p className="text-xl text-base-content opacity-70">
+							Enroll to access the course content
+						</p>
+						<button
+							className="btn btn-primary mt-8"
+							onClick={() => router.push("/enroll")}
+						>
+							Enroll Now
+						</button>
+					</div>
+				</div>
+			</div>
+		);
+	}
 	return (
 		<div className="min-h-screen bg-base-200">
 			<Navbar />
