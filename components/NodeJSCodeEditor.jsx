@@ -39,7 +39,7 @@ const NodeJSCodeEditor = () => {
   
     try {
       console.log('Sending code for analysis:', code);
-      const response = await fetch('https://ml.jsprodigy.com/code/analyze'|| 'http://127.0.0.1:5000/code/analyze', {
+      const response = await fetch('https://ml.jsprodigy.com/code/analyze', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,6 +53,7 @@ const NodeJSCodeEditor = () => {
       }
       const data = await response.json();
       console.log('Received data:', data);
+      
       setAnalysis(data);
     } catch (error) {
       console.error('Fetch error:', error);
@@ -138,12 +139,43 @@ const NodeJSCodeEditor = () => {
                   {JSON.stringify(analysis.static_analysis, null, 2)}
                 </pre>
                 <h3 className="text-lg font-semibold mb-2">AI Analysis:</h3>
-                {Object.entries(JSON.parse(analysis.ai_analysis)).map(([key, value]) => (
-                  <div key={key} className="mb-4">
-                    <h4 className="text-md font-semibold">{key}</h4>
-                    <p className="ml-2">{value}</p>
-                  </div>
-                ))}
+                  {analysis.ai_analysis && (
+                    <div>
+                      {(() => {
+                        try {
+                          const parsedAnalysis = JSON.parse(analysis.ai_analysis);
+                          return Object.entries(parsedAnalysis).map(([key, value]) => (
+                            <div key={key} className="mb-4">
+                              <h4 className="text-md font-semibold">{key}</h4>
+                              {typeof value === 'string' ? (
+                                <p className="ml-2">{value}</p>
+                              ) : (
+                                <ul className="ml-2">
+                                  {Object.entries(value).map(([subKey, subValue]) => (
+                                    <li key={subKey}>
+                                      <strong>{subKey}:</strong>{' '}
+                                      {Array.isArray(subValue) ? (
+                                        <ul>
+                                          {subValue.map((item, index) => (
+                                            <li key={index}>{item}</li>
+                                          ))}
+                                        </ul>
+                                      ) : (
+                                        subValue
+                                      )}
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          ));
+                        } catch (error) {
+                          console.error('Error parsing AI analysis:', error);
+                          return <p>Error parsing AI analysis results.</p>;
+                        }
+                      })()}
+                    </div>
+                  )}
               </div>
             ) : (
               <p>No analysis results yet. Click "Analyze" to start.</p>
