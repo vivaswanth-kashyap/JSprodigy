@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <!-- Background -->
+  <rect x="0" y="0" width="400" height="300" fill="#f0f0f0" opacity="0.1"/>
+  
+  <!-- Central AI Node -->
+  <circle cx="200" cy="150" r="60" fill="#3498db"/>
+  <path d="M180 150 Q200 120 220 150 Q240 180 200 190 Q160 180 180 150" fill="#ffffff"/>
+  
+  <!-- Code Editor -->
+  <rect x="20" y="20" width="140" height="120" fill="#ffffff" stroke="#333333" stroke-width="2" rx="10"/>
+  <line x1="35" y1="45" x2="145" y2="45" stroke="#cccccc" stroke-width="2"/>
+  <line x1="35" y1="70" x2="135" y2="70" stroke="#cccccc" stroke-width="2"/>
+  <line x1="35" y1="95" x2="140" y2="95" stroke="#cccccc" stroke-width="2"/>
+  
+  <!-- Community Chat -->
+  <rect x="240" y="20" width="140" height="120" fill="#ffffff" stroke="#333333" stroke-width="2" rx="10"/>
+  <circle cx="270" cy="50" r="15" fill="#2ecc71"/>
+  <circle cx="310" cy="50" r="15" fill="#e74c3c"/>
+  <circle cx="350" cy="50" r="15" fill="#f39c12"/>
+  <rect x="260" y="80" width="100" height="10" fill="#ecf0f1" rx="5"/>
+  <rect x="260" y="100" width="80" height="10" fill="#ecf0f1" rx="5"/>
+  
+  <!-- Connecting Lines -->
+  <path d="M140 80 Q170 115 200 90" fill="none" stroke="#3498db" stroke-width="2"/>
+  <path d="M260 80 Q230 115 200 90" fill="none" stroke="#3498db" stroke-width="2"/>
+  
+  <!-- Code Analysis -->
+  <rect x="20" y="160" width="140" height="120" fill="#ffffff" stroke="#333333" stroke-width="2" rx="10"/>
+  <line x1="35" y1="185" x2="145" y2="185" stroke="#cccccc" stroke-width="2"/>
+  <line x1="35" y1="210" x2="135" y2="210" stroke="#cccccc" stroke-width="2"/>
+  <line x1="35" y1="235" x2="140" y2="235" stroke="#cccccc" stroke-width="2"/>
+  <rect x="35" y="260" width="50" height="10" fill="#e74c3c" rx="5"/>
+  
+  <!-- Community Support -->
+  <rect x="240" y="160" width="140" height="120" fill="#ffffff" stroke="#333333" stroke-width="2" rx="10"/>
+  <circle cx="280" cy="200" r="25" fill="#3498db"/>
+  <text x="280" y="205" font-family="Arial, sans-serif" font-size="12" fill="white" text-anchor="middle">AI</text>
+  <rect x="320" y="190" width="50" height="10" fill="#ecf0f1" rx="5"/>
+  <rect x="320" y="210" width="40" height="10" fill="#ecf0f1" rx="5"/>
+  
+  <!-- Connecting Lines -->
+  <path d="M140 220 Q170 185 200 210" fill="none" stroke="#3498db" stroke-width="2"/>
+  <path d="M260 220 Q230 185 200 210" fill="none" stroke="#3498db" stroke-width="2"/>
+  
+  <!-- AI Glow Effect -->
+  <circle cx="200" cy="150" r="80" fill="url(#ai-glow)"/>
+  
+  <!-- Definitions -->
+  <defs>
+    <radialGradient id="ai-glow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:#3498db;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#3498db;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+</svg>

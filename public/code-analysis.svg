@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background -->
+  <rect x="10" y="10" width="180" height="180" fill="#f0f0f0" rx="10" ry="10"/>
+  
+  <!-- Code lines -->
+  <line x1="30" y1="40" x2="170" y2="40" stroke="#ccc" stroke-width="2"/>
+  <line x1="30" y1="60" x2="150" y2="60" stroke="#ccc" stroke-width="2"/>
+  <line x1="30" y1="80" x2="160" y2="80" stroke="#ccc" stroke-width="2"/>
+  <line x1="30" y1="100" x2="140" y2="100" stroke="#ccc" stroke-width="2"/>
+  <line x1="30" y1="120" x2="170" y2="120" stroke="#ccc" stroke-width="2"/>
+  
+  <!-- Magnifying glass -->
+  <circle cx="120" cy="140" r="30" fill="none" stroke="#4a4a4a" stroke-width="4"/>
+  <line x1="142" y1="162" x2="170" y2="190" stroke="#4a4a4a" stroke-width="4"/>
+  
+  <!-- AI symbol -->
+  <circle cx="60" cy="140" r="20" fill="#3498db"/>
+  <text x="60" y="146" font-family="Arial, sans-serif" font-size="16" fill="white" text-anchor="middle">AI</text>
+  
+  <!-- Connection line -->
+  <path d="M80 140 Q100 120 120 140" fill="none" stroke="#3498db" stroke-width="2"/>
+</svg>

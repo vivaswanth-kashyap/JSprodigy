@@ -103,97 +103,136 @@ export default function Home() {
 				</section>
 
 				<section className="container mx-auto py-16 px-4">
-					<div className="bg-base-200 rounded-lg shadow-xl overflow-hidden">
-						<div className="flex flex-col md:flex-row items-center">
-							<div className="md:w-1/2 p-8">
-								<h2 className="text-3xl font-bold mb-4">
-									AI-Powered Community Support
+					<div className="bg-base-200 text-base-content rounded-lg shadow-2xl overflow-hidden">
+						<div className="flex flex-col lg:flex-row items-center">
+							<div className="lg:w-1/2 p-8">
+								<h2 className="text-4xl font-bold mb-6 text-primary">
+									AI-Powered Learning Experience
 								</h2>
-								<p className="text-xl mb-6">
-									Get instant answers to your coding questions with our
-									AI-powered community section.
+								<p className="text-xl mb-8">
+									Enhance your learning with our cutting-edge AI technologies,
+									providing personalized support and code analysis.
 								</p>
 
-								<ul className="space-y-4">
-									<li className="flex items-center">
-										<svg
-											className="w-6 h-6 mr-2 text-primary"
-											fill="none"
-											stroke="currentColor"
-											viewBox="0 0 24 24"
-											xmlns="http://www.w3.org/2000/svg"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth="2"
-												d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-											></path>
-										</svg>
-										<span>24/7 AI-powered doubt resolution</span>
-									</li>
-									<li className="flex items-center">
-										<svg
-											className="w-6 h-6 mr-2 text-primary"
-											fill="none"
-											stroke="currentColor"
-											viewBox="0 0 24 24"
-											xmlns="http://www.w3.org/2000/svg"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth="2"
-												d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-											></path>
-										</svg>
-										<span>Instant responses to your questions</span>
-									</li>
-									<li className="flex items-center">
-										<svg
-											className="w-6 h-6 mr-2 text-primary"
-											fill="none"
-											stroke="currentColor"
-											viewBox="0 0 24 24"
-											xmlns="http://www.w3.org/2000/svg"
-										>
-											<path
-												strokeLinecap="round"
-												strokeLinejoin="round"
-												strokeWidth="2"
-												d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-											></path>
-										</svg>
-										<span>Learn from AI-curated explanations</span>
-									</li>
-								</ul>
-								{user && courseAccess ? (
-									<div className="mt-8">
-										<Link href={`/doubts`}>
-											<button className="btn btn-outline btn-secondary">
-												Try out
-											</button>
-										</Link>
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+									<div className="bg-base-100 p-6 rounded-lg shadow-md">
+										<h3 className="text-2xl font-semibold mb-4 text-secondary">
+											Community Support
+										</h3>
+										<ul className="space-y-3">
+											<li className="flex items-center">
+												<svg
+													className="w-6 h-6 mr-2 text-accent"
+													fill="none"
+													stroke="currentColor"
+													viewBox="0 0 24 24"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														strokeWidth="2"
+														d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+													></path>
+												</svg>
+												<span>24/7 AI-powered doubt resolution</span>
+											</li>
+											<li className="flex items-center">
+												<svg
+													className="w-6 h-6 mr-2 text-accent"
+													fill="none"
+													stroke="currentColor"
+													viewBox="0 0 24 24"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														strokeWidth="2"
+														d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+													></path>
+												</svg>
+												<span>Instant responses to your questions</span>
+											</li>
+										</ul>
 									</div>
-								) : (
-									<div className="mt-8 lg:tooltip" data-tip="enroll to try out">
-										<button className="btn btn-outline btn-disabled" disabled>
-											Try out
-										</button>
-									</div>
-								)}
-							</div>
-							<div className="md:w-1/2 p-8 bg-base-300">
-								<div className="relative">
-									<img
-										src="/community-ai.svg"
-										alt="AI-powered community support"
-										className="w-full h-auto max-h-80"
-									/>
-									<div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-										<div className="animate-pulse bg-primary opacity-30 rounded-full w-32 h-32"></div>
+
+									<div className="bg-base-100 p-6 rounded-lg shadow-md">
+										<h3 className="text-2xl font-semibold mb-4 text-secondary">
+											Code Analysis
+										</h3>
+										<ul className="space-y-3">
+											<li className="flex items-center">
+												<svg
+													className="w-6 h-6 mr-2 text-accent"
+													fill="none"
+													stroke="currentColor"
+													viewBox="0 0 24 24"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														strokeWidth="2"
+														d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+													></path>
+												</svg>
+												<span>Get instant feedback on your code</span>
+											</li>
+											<li className="flex items-center">
+												<svg
+													className="w-6 h-6 mr-2 text-accent"
+													fill="none"
+													stroke="currentColor"
+													viewBox="0 0 24 24"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<path
+														strokeLinecap="round"
+														strokeLinejoin="round"
+														strokeWidth="2"
+														d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+													></path>
+												</svg>
+												<span>Learn best practices and standards</span>
+											</li>
+										</ul>
 									</div>
 								</div>
+
+								<div className="mt-8 flex flex-wrap gap-4">
+									{user && courseAccess ? (
+										<>
+											<Link href="/doubts">
+												<button className="btn btn-primary">
+													Try Community Support
+												</button>
+											</Link>
+											<Link href="/practice">
+												<button className="btn btn-secondary">
+													Try Code Analysis
+												</button>
+											</Link>
+										</>
+									) : (
+										<div
+											className="tooltip"
+											data-tip="Enroll to access these features"
+										>
+											<button className="btn btn-disabled" disabled>
+												Access AI Features
+											</button>
+										</div>
+									)}
+								</div>
+							</div>
+
+							<div className="lg:w-1/2 p-8">
+								<img
+									src="/ai-features.svg"
+									alt="AI-powered learning features"
+									className="w-full h-auto"
+								/>
 							</div>
 						</div>
 					</div>
