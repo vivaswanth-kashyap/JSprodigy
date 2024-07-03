@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import VimeoPlayer from "../components/VimeoPlayer";
@@ -85,13 +84,6 @@ const CoursePage = ({ course }) => {
 		}
 	}, [course.videos]);
 
-	// Calculate total course duration
-	const totalDuration = course.videos.reduce(
-		(acc, video) => acc + video.duration,
-		0
-	);
-
-	// Function to format duration in minutes and seconds
 	const formatDuration = (seconds) => {
 		const minutes = Math.floor(seconds / 60);
 		const remainingSeconds = seconds % 60;
@@ -103,7 +95,6 @@ const CoursePage = ({ course }) => {
 			<div className="bg-base-100 min-h-screen">
 				<Navbar />
 				<div className="container flex justify-center my-72 mx-auto">
-					<span className="loading loading-dots loading-lg"></span>
 					<span className="loading loading-dots loading-lg"></span>
 				</div>
 			</div>
@@ -133,25 +124,23 @@ const CoursePage = ({ course }) => {
 			</div>
 		);
 	}
+
 	return (
 		<div className="min-h-screen bg-base-200">
 			<Navbar />
-			<div className="container mx-auto px-4">
-				{/* Course Header */}
-				<div className="py-8 border-b border-base-300">
-					<h1 className="text-3xl font-bold text-base-content">
-						{course.title}
-					</h1>
-					<p className="mt-2 text-lg text-base-content/70">
-						{course.description}
-					</p>
-				</div>
+			<div className="container mx-auto px-4 py-8">
+				<h1 className="text-3xl font-bold text-base-content mb-2">
+					{course.title}
+				</h1>
+				<p className="text-lg text-base-content/70 mb-8">
+					{course.description}
+				</p>
 
-				<div className="flex flex-col lg:flex-row mt-8">
+				<div className="flex flex-col lg:flex-row gap-8">
 					{/* Main Content Area */}
-					<div className="w-full lg:w-8/12 pr-0 lg:pr-8">
+					<div className="w-full lg:w-8/12">
 						{/* Video Player */}
-						<div className="bg-base-100 rounded-lg shadow-lg overflow-hidden">
+						<div className="bg-base-100 rounded-lg shadow-lg overflow-hidden mb-6">
 							<div className="aspect-w-16 aspect-h-9">
 								{videoId ? (
 									<VimeoPlayer videoId={videoId} />
@@ -167,75 +156,69 @@ const CoursePage = ({ course }) => {
 							</div>
 						</div>
 
-						{/* Video Title and Navigation Buttons */}
-						<div className="mt-4 space-y-4">
-							{selectedVideo && (
-								<h2 className="text-xl font-semibold text-base-content">
+						{/* Video Title and Navigation */}
+						{selectedVideo && (
+							<div className="mb-6">
+								<h2 className="text-2xl font-semibold text-base-content mb-4">
 									{selectedVideo.name}
 								</h2>
-							)}
-							<div className="flex justify-between items-center">
-								<button
-									onClick={handlePreviousVideo}
-									className="btn btn-primary"
-									disabled={currentVideoIndex === 0}
-								>
-									Previous Video
-								</button>
-								<button
-									onClick={handleNextVideo}
-									className="btn btn-primary"
-									disabled={currentVideoIndex === course.videos.length - 1}
-								>
-									Next Video
-								</button>
+								<div className="flex justify-between items-center">
+									<button
+										onClick={handlePreviousVideo}
+										className="btn btn-outline btn-primary"
+										disabled={currentVideoIndex === 0}
+									>
+										← Previous
+									</button>
+									<button
+										onClick={handleNextVideo}
+										className="btn btn-primary"
+										disabled={currentVideoIndex === course.videos.length - 1}
+									>
+										Next →
+									</button>
+								</div>
 							</div>
-						</div>
+						)}
 
-						{/* Course Content Section */}
-						<div className="my-8">
+						{/* Course Content */}
+						<div className="bg-base-100 rounded-lg shadow p-6">
 							<h3 className="text-xl font-semibold mb-4 text-base-content">
 								Course Content
 							</h3>
-							<div className="bg-base-100 rounded-lg shadow">
+							<div className="space-y-2">
 								{course.videos.map((video, index) => (
-									<div
+									<button
 										key={video.key}
-										className={`p-4 flex items-center justify-between cursor-pointer hover:bg-base-200 ${
-											index !== course.videos.length - 1
-												? "border-b border-base-300"
-												: ""
+										className={`w-full text-left p-3 rounded-lg transition-colors ${
+											selectedVideo && selectedVideo.key === video.key
+												? "bg-primary text-primary-content"
+												: "hover:bg-base-200"
 										}`}
 										onClick={() => handleVideoSelect(video, index)}
 									>
-										<div className="flex items-center">
-											<span className="mr-3 text-primary">{index + 1}.</span>
-											<span
-												className={`${
-													selectedVideo && selectedVideo.key === video.key
-														? "font-semibold"
-														: ""
-												}`}
-											>
+										<div className="flex items-center justify-between">
+											<span>
+												<span className="font-medium mr-2">{index + 1}.</span>
 												{video.name}
 											</span>
+											<span className="text-sm opacity-70">
+												{formatDuration(video.duration)}
+											</span>
 										</div>
-										<span className="text-sm text-base-content/70">
-											{formatDuration(video.duration)}
-										</span>
-									</div>
+									</button>
 								))}
 							</div>
 						</div>
 					</div>
 
 					{/* Sidebar */}
-					<div className="w-full lg:w-4/12 mt-8 lg:mt-0">
+					<div className="w-full lg:w-4/12">
 						<div className="bg-base-100 rounded-lg shadow p-6 sticky top-4">
 							<h3 className="text-xl font-semibold mb-4 text-base-content">
 								Course Overview
 							</h3>
-							<ul className="space-y-2">
+							<ul className="space-y-3">
 								<li className="flex items-center text-base-content">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
@@ -265,15 +248,29 @@ const CoursePage = ({ course }) => {
 											clipRule="evenodd"
 										/>
 									</svg>
-									{formatDuration(totalDuration)} total length
+									{formatDuration(
+										course.videos.reduce(
+											(acc, video) => acc + video.duration,
+											0
+										)
+									)}{" "}
+									total length
 								</li>
 							</ul>
-							<Link
-								href="/curriculum"
-								className="btn btn-primary btn-block mt-6"
-							>
-								Start Learning
-							</Link>
+							<div className="mt-6 space-y-2">
+								<div className="text-base-content">
+									Your progress:{" "}
+									{Math.round(
+										(currentVideoIndex / (course.videos.length - 1)) * 100
+									)}
+									%
+								</div>
+								<progress
+									className="progress progress-primary w-full"
+									value={currentVideoIndex}
+									max={course.videos.length - 1}
+								></progress>
+							</div>
 						</div>
 					</div>
 				</div>
