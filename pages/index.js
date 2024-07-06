@@ -87,8 +87,8 @@ export default function Home() {
 										New Batch Starting from July 1st!
 									</p>
 									<ul className="list-disc pl-8 text-lg space-y-2">
-										<li>Live online classes</li>
-										<li>Recordings accessible for 2 years</li>
+										<li>On demand course videos</li>
+										<li>New videos every Wednesday & Saturday </li>
 										<li>Live 24/7 Doubt Support</li>
 									</ul>
 								</div>
