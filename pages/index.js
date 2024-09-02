@@ -54,7 +54,7 @@ export default function Home() {
 		<div className="bg-base-100 min-h-screen">
 			<Head>
 				<title>Full Stack Web Development with JavaScript</title>
-				<link rel="icon" href="/logo.svg" />
+				<link rel="icon" className="text-4xl" href="/newLogo.svg" />
 			</Head>
 
 			<Navbar />
@@ -67,7 +67,7 @@ export default function Home() {
 						</h1>
 						<p className="text-xl mb-8">
 							Learn to build powerful web applications using Node.js, Express,
-							React, Next.js, MongoDB, Redis, and GraphQL.
+							React, Next.js, MongoDB, Redis, and GraphQ, etc.,
 						</p>
 						{user && courseAccess ? (
 							<div>
@@ -84,11 +84,12 @@ export default function Home() {
 							<div>
 								<div className="mb-8">
 									<p className="text-2xl font-semibold mb-4">
-										New Batch Starting from July 1st!
+										New Batch Starting from September 10th!
 									</p>
 									<ul className="list-disc pl-8 text-lg space-y-2">
-										<li>On demand course videos</li>
-										<li>New videos every Wednesday & Saturday </li>
+										<li>Live Classes every Monday, Wednesday & Friday.</li>
+										<li>Doubt Classes every sunday</li>
+										<li>Lifetime Access to Recordings</li>
 										<li>Live 24/7 Doubt Support</li>
 									</ul>
 								</div>

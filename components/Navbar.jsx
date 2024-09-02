@@ -4,6 +4,7 @@ import { doSignOut } from "../firebase/FirebaseFunctions";
 import { useContext, useEffect } from "react";
 import { ThemeContext } from "../contexts/themeContext";
 import { useAuth } from "../contexts/AuthContext";
+import { Bell } from "lucide-react";
 
 const Navbar = () => {
   const { user } = useAuth();
@@ -28,28 +29,33 @@ const Navbar = () => {
       <div className="container mx-auto navbar">
         <div className="navbar-start">
           <Link href="/" className="flex items-center">
-            <Image src="/logo.svg" alt="Logo" width={32} height={32} />
-            <span className="ml-2 text-2xl font-semibold text-primary">JSProdigy</span>
+            <Image src="/newLogo.svg" alt="Logo" width={60} height={60} />
+            <span className=" text-2xl font-semibold text-primary">JSProdigy</span>
           </Link>
         </div>
         <div className="navbar-end space-x-4">
           {user ? (
-            <div className="dropdown dropdown-end">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img src={user.photoURL || "https://via.placeholder.com/150"} alt="Profile" />
-                </div>
-              </label>
-              <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-                <li>
-                  <Link href={`/profile/${user.uid}`}>
-                    <button>Profile</button>
-                  </Link>
-                </li>
-                <li>
-                  <button onClick={handleSignOut}>Sign Out</button>
-                </li>
-              </ul>
+            <div className="flex flex-row">
+              <div className="flex justify-center items-center p-4">
+                <Bell className="h-8 w-8" />
+              </div>
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded-full">
+                    <img src={user.photoURL || "https://via.placeholder.com/150"} alt="Profile" />
+                  </div>
+                </label>
+                <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                  <li>
+                    <Link href={`/profile/${user.uid}`}>
+                      <button>Profile</button>
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleSignOut}>Sign Out</button>
+                  </li>
+                </ul>
+              </div>
             </div>
           ) : (
             <>
