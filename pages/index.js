@@ -84,7 +84,7 @@ export default function Home() {
 							<div>
 								<div className="mb-8">
 									<p className="text-2xl font-semibold mb-4">
-										New Batch Starting from September 10th!
+										New Batch Starting from September 20th!
 									</p>
 									<ul className="list-disc pl-8 text-lg space-y-2">
 										<li>Live Classes every Monday, Wednesday & Friday.</li>
