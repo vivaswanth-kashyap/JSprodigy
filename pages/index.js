@@ -1,9 +1,11 @@
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useState, useEffect } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
+import { BookOpen, Code, Server, Database, Cloud } from "lucide-react";
 
 export default function Home() {
 	const [user, setUser] = useState(null);
@@ -60,148 +62,133 @@ export default function Home() {
 			<Navbar />
 
 			<main>
-				<section className="bg-gradient-to-r from-primary to-secondary text-white py-20 shadow-3xl mx-auto">
-					<div className="container mx-auto px-4">
-						<h1 className="text-4xl font-bold mb-4">
-							Master Full Stack Web Development with JavaScript
-						</h1>
-						<p className="text-xl mb-8">
-							Learn to build powerful web applications using Node.js, Express,
-							React, Next.js, MongoDB, Redis, and GraphQ, etc.,
-						</p>
-						{user && courseAccess ? (
-							<div>
-								<p className="text-2xl font-semibold mb-4">
-									Welcome back! Ready to continue your learning journey?
-								</p>
-								<Link href="/dashboard">
-									<button className="btn btn-outline text-white font-semibold py-3 px-8 rounded-full shadow-lg">
-										Go to Dashboard
-									</button>
-								</Link>
+				<section className="bg-gradient-to-r from-primary to-secondary text-white py-24 relative overflow-hidden">
+					<div className="absolute inset-0 opacity-10">
+						<img
+							src="/hero-pattern.svg"
+							alt="Background Pattern"
+							className="w-full h-full object-cover"
+						/>
+					</div>
+					<div className="container mx-auto px-4 relative z-10">
+						<motion.h1
+							initial={{ opacity: 0, y: -20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.5 }}
+							className="text-5xl md:text-6xl font-bold mb-8 text-center"
+						>
+							Master Full Stack Web Development
+						</motion.h1>
+						<div className="max-w-3xl mx-auto">
+							<motion.p
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.5, delay: 0.2 }}
+								className="text-xl md:text-2xl mb-12 text-center"
+							>
+								Learn to build powerful web applications using cutting-edge
+								technologies
+							</motion.p>
+							<div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-8 shadow-lg">
+								{user && courseAccess ? (
+									<div className="mx-40">
+										<p className="text-xl font-semibold mb-4">
+											Welcome back! Ready to continue your learning journey?
+										</p>
+										<Link href="/dashboard">
+											<button className="btn btn-outline btn-lg text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-primary transition duration-300">
+												Go to Dashboard
+											</button>
+										</Link>
+									</div>
+								) : (
+									<div className="mx-40">
+										<p className="text-xl font-semibold mb-6">
+											New Batch Starting from October 5th!
+										</p>
+										<ul className="list-none pl-0 text-lg space-y-4 mb-8">
+											<li className="flex items-center">
+												<BookOpen className="mr-4 flex-shrink-0" /> Live Classes
+												every Monday, Wednesday & Friday
+											</li>
+											<li className="flex items-center">
+												<Code className="mr-4 flex-shrink-0" /> Doubt Classes
+												every Sunday
+											</li>
+											<li className="flex items-center">
+												<Server className="mr-4 flex-shrink-0" /> Lifetime
+												Access to Recordings
+											</li>
+											<li className="flex items-center">
+												<Database className="mr-4 flex-shrink-0" /> Live 24/7
+												Doubt Support
+											</li>
+										</ul>
+										<Link href="/enroll">
+											<button className="btn btn-outline btn-lg text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-primary transition duration-300 w-full sm:w-auto">
+												Enroll Now
+											</button>
+										</Link>
+									</div>
+								)}
 							</div>
-						) : (
-							<div>
-								<div className="mb-8">
-									<p className="text-2xl font-semibold mb-4">
-										New Batch Starting from October 5th!
-									</p>
-									<ul className="list-disc pl-8 text-lg space-y-2">
-										<li>Live Classes every Monday, Wednesday & Friday.</li>
-										<li>Doubt Classes every sunday</li>
-										<li>Lifetime Access to Recordings</li>
-										<li>Live 24/7 Doubt Support</li>
-									</ul>
-								</div>
-								<Link href="/enroll">
-									<button className="btn btn-outline text-white font-semibold py-3 px-8 rounded-full shadow-lg">
-										Enroll Now
-									</button>
-								</Link>
-							</div>
-						)}
+						</div>
 					</div>
 				</section>
 
-				<section className="container mx-auto py-16 px-4">
-					<div className="bg-base-200 text-base-content rounded-lg shadow-2xl overflow-hidden">
+				<section className="container mx-auto py-24 px-4">
+					<div className="bg-base-200 rounded-lg shadow-2xl overflow-hidden">
 						<div className="flex flex-col lg:flex-row items-center">
-							<div className="lg:w-1/2 p-8">
-								<h2 className="text-4xl font-bold mb-6 text-primary">
+							<div className="lg:w-1/2 p-12">
+								<h2 className="text-4xl font-bold mb-8 text-primary">
 									AI-Powered Learning Experience
 								</h2>
-								<p className="text-xl mb-8">
+								<p className="text-xl mb-12">
 									Enhance your learning with our cutting-edge AI technologies,
 									providing personalized support and code analysis.
 								</p>
 
-								<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-									<div className="bg-base-100 p-6 rounded-lg shadow-md">
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+									<motion.div
+										whileHover={{ scale: 1.05 }}
+										className="bg-base-100 p-6 rounded-lg shadow-md"
+									>
 										<h3 className="text-2xl font-semibold mb-4 text-secondary">
 											Community Support
 										</h3>
 										<ul className="space-y-3">
 											<li className="flex items-center">
-												<svg
-													className="w-6 h-6 mr-2 text-accent"
-													fill="none"
-													stroke="currentColor"
-													viewBox="0 0 24 24"
-													xmlns="http://www.w3.org/2000/svg"
-												>
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														strokeWidth="2"
-														d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-													></path>
-												</svg>
+												<Cloud className="w-6 h-6 mr-2 text-accent" />
 												<span>24/7 AI-powered doubt resolution</span>
 											</li>
 											<li className="flex items-center">
-												<svg
-													className="w-6 h-6 mr-2 text-accent"
-													fill="none"
-													stroke="currentColor"
-													viewBox="0 0 24 24"
-													xmlns="http://www.w3.org/2000/svg"
-												>
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														strokeWidth="2"
-														d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-													></path>
-												</svg>
+												<Cloud className="w-6 h-6 mr-2 text-accent" />
 												<span>Instant responses to your questions</span>
 											</li>
 										</ul>
-									</div>
+									</motion.div>
 
-									<div className="bg-base-100 p-6 rounded-lg shadow-md">
+									<motion.div
+										whileHover={{ scale: 1.05 }}
+										className="bg-base-100 p-6 rounded-lg shadow-md"
+									>
 										<h3 className="text-2xl font-semibold mb-4 text-secondary">
 											Code Analysis
 										</h3>
 										<ul className="space-y-3">
 											<li className="flex items-center">
-												<svg
-													className="w-6 h-6 mr-2 text-accent"
-													fill="none"
-													stroke="currentColor"
-													viewBox="0 0 24 24"
-													xmlns="http://www.w3.org/2000/svg"
-												>
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														strokeWidth="2"
-														d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-													></path>
-												</svg>
+												<Code className="w-6 h-6 mr-2 text-accent" />
 												<span>Get instant feedback on your code</span>
 											</li>
 											<li className="flex items-center">
-												<svg
-													className="w-6 h-6 mr-2 text-accent"
-													fill="none"
-													stroke="currentColor"
-													viewBox="0 0 24 24"
-													xmlns="http://www.w3.org/2000/svg"
-												>
-													<path
-														strokeLinecap="round"
-														strokeLinejoin="round"
-														strokeWidth="2"
-														d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-													></path>
-												</svg>
+												<Code className="w-6 h-6 mr-2 text-accent" />
 												<span>Learn best practices and standards</span>
 											</li>
 										</ul>
-									</div>
+									</motion.div>
 								</div>
 
-								<div className="mt-8 flex flex-wrap gap-4">
+								<div className="mt-12 flex flex-wrap gap-4 justify-center">
 									{user && courseAccess ? (
 										<>
 											<Link href="/doubts">
@@ -228,7 +215,7 @@ export default function Home() {
 								</div>
 							</div>
 
-							<div className="lg:w-1/2 p-8">
+							<div className="lg:w-1/2 p-12">
 								<img
 									src="/ai-features.svg"
 									alt="AI-powered learning features"
@@ -242,7 +229,7 @@ export default function Home() {
 				<section className="container mx-auto py-16 px-4">
 					<h2 className="text-3xl font-semibold mb-8">What You'll Learn</h2>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-						<div className="card glass shadow-xl">
+						<div className="card  shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/react.svg"
@@ -253,7 +240,7 @@ export default function Home() {
 								<p>Build dynamic and interactive user interfaces with React.</p>
 							</div>
 						</div>
-						<div className="card glass shadow-xl">
+						<div className="card  shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/nodejs.svg"
@@ -264,7 +251,7 @@ export default function Home() {
 								<p>Develop server-side applications using Node.js.</p>
 							</div>
 						</div>
-						<div className="card glass shadow-xl">
+						<div className="card  shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/nextjs.svg"
@@ -275,7 +262,7 @@ export default function Home() {
 								<p>Build server-rendered React applications with Next.js.</p>
 							</div>
 						</div>
-						<div className="card glass shadow-xl">
+						<div className="card  shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/firebase.svg"
@@ -289,7 +276,7 @@ export default function Home() {
 								</p>
 							</div>
 						</div>
-						<div className="card glass shadow-xl">
+						<div className="card  shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/graphql.svg"
@@ -300,7 +287,7 @@ export default function Home() {
 								<p>Learn to build efficient and flexible APIs using GraphQL.</p>
 							</div>
 						</div>
-						<div className="card glass shadow-xl">
+						<div className="card  shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/mongodb.svg"
@@ -311,7 +298,7 @@ export default function Home() {
 								<p>Store and retrieve data using MongoDB.</p>
 							</div>
 						</div>
-						<div className="card glass shadow-xl">
+						<div className="card  shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/redis.svg"
@@ -322,7 +309,7 @@ export default function Home() {
 								<p>Optimize application performance with Redis caching.</p>
 							</div>
 						</div>
-						<div className="card glass shadow-xl">
+						<div className="card  shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/tailwindcss.svg"
@@ -333,14 +320,14 @@ export default function Home() {
 								<p>Style your applications rapidly with Tailwind CSS.</p>
 							</div>
 						</div>
-						<div className="card glass shadow-xl">
+						<div className="card  shadow-xl">
 							<div className="card-body items-center text-center">
 								<img src="/aws.svg" alt="AWS" className="h-12 w-auto mb-4" />
 								<h3 className="card-title">AWS</h3>
 								<p>Deploy and scale your applications using AWS services.</p>
 							</div>
 						</div>
-						<div className="card glass shadow-xl">
+						<div className="card  shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/netlify.svg"
@@ -354,7 +341,7 @@ export default function Home() {
 								</p>
 							</div>
 						</div>
-						<div className="card glass shadow-xl">
+						<div className="card  shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/docker.svg"
@@ -365,7 +352,7 @@ export default function Home() {
 								<p>Package and deploy applications using Docker containers.</p>
 							</div>
 						</div>
-						<div className="card glass shadow-xl">
+						<div className="card  shadow-xl">
 							<div className="card-body items-center text-center">
 								<img
 									src="/kubernetes.svg"
