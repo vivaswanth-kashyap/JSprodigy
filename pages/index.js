@@ -62,7 +62,7 @@ export default function Home() {
 			<Navbar />
 
 			<main>
-				<section className="bg-gradient-to-r from-primary to-secondary text-white py-24 relative overflow-hidden">
+				<section className="bg-gradient-to-r from-primary to-secondary text-white py-12 md:py-24 relative overflow-hidden">
 					<div className="absolute inset-0 opacity-10">
 						<img
 							src="/hero-pattern.svg"
@@ -75,38 +75,38 @@ export default function Home() {
 							initial={{ opacity: 0, y: -20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.5 }}
-							className="text-5xl md:text-6xl font-bold mb-8 text-center"
+							className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-center"
 						>
 							Master Full Stack Web Development
 						</motion.h1>
-						<div className="max-w-3xl mx-auto">
+						<div className="max-w-4xl mx-auto">
 							<motion.p
 								initial={{ opacity: 0, y: 20 }}
 								animate={{ opacity: 1, y: 0 }}
 								transition={{ duration: 0.5, delay: 0.2 }}
-								className="text-xl md:text-2xl mb-12 text-center"
+								className="text-lg md:text-xl lg:text-2xl mb-8 md:mb-12 text-center"
 							>
 								Learn to build powerful web applications using cutting-edge
 								technologies
 							</motion.p>
-							<div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-8 shadow-lg">
+							<div className="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg rounded-lg p-6 md:p-8 shadow-lg">
 								{user && courseAccess ? (
-									<div className="mx-40">
+									<div className="text-center">
 										<p className="text-xl font-semibold mb-4">
 											Welcome back! Ready to continue your learning journey?
 										</p>
 										<Link href="/dashboard">
-											<button className="btn btn-outline btn-lg text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-primary transition duration-300">
+											<button className="btn btn-outline btn-lg text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-primary transition duration-300 w-full sm:w-auto">
 												Go to Dashboard
 											</button>
 										</Link>
 									</div>
 								) : (
-									<div className="mx-40">
-										<p className="text-xl font-semibold mb-6">
+									<div>
+										<p className="text-xl font-semibold mb-6 text-center">
 											New Batch Starting from October 5th!
 										</p>
-										<ul className="list-none pl-0 text-lg space-y-4 mb-8">
+										<ul className="list-none pl-0 text-base md:text-lg space-y-4 mb-8">
 											<li className="flex items-center">
 												<BookOpen className="mr-4 flex-shrink-0" /> Live Classes
 												every Monday, Wednesday & Friday
@@ -124,11 +124,13 @@ export default function Home() {
 												Doubt Support
 											</li>
 										</ul>
-										<Link href="/enroll">
-											<button className="btn btn-outline btn-lg text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-primary transition duration-300 w-full sm:w-auto">
-												Enroll Now
-											</button>
-										</Link>
+										<div className="text-center">
+											<Link href="/enroll">
+												<button className="btn btn-outline btn-lg text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-white hover:text-primary transition duration-300 w-full sm:w-auto">
+													Enroll Now
+												</button>
+											</Link>
+										</div>
 									</div>
 								)}
 							</div>
