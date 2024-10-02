@@ -104,7 +104,7 @@ export default function Home() {
 								) : (
 									<div>
 										<p className="text-xl font-semibold mb-6 text-center">
-											New Batch Starting from October 5th!
+											New Batch Starting from October 10th!
 										</p>
 										<ul className="list-none pl-0 text-base md:text-lg space-y-4 mb-8">
 											<li className="flex items-center">
